@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gr&aacute;fico de Infracciones de Transito</title>
+</head>
+<link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="./lib/leaflet/dist/leaflet.css" />
+<script type="text/javascript" src="./lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript"
+	src="./lib/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="./lib/leaflet/dist/leaflet.js"></script>
+<style>
+#map {
+	margin: 0 auto;
+}
+</style>
+<body>
+	<h1>P&aacute;gina Principal</h1>
+	<div id="map" style="width: 650px; height: 450px;"></div>
+	<script type="text/javascript">
+	$('document').ready(function(){
+		var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 50});		
+		var map = L.map('map').setView([-23.4510191,-58.0437109	], 6);
+		map.addLayer(osm);
+		// Disable drag and zoom handlers.
+			map.dragging.disable();
+			map.touchZoom.disable();
+			map.doubleClickZoom.disable();
+			map.scrollWheelZoom.disable();
+			map.keyboard.disable();
+		map.on('load',function(){
+			alert('cargando....');
+		});
+		
+		jQuery.get("paraguay.json",function(data){
+			L.geoJson(data).addTo(map);
+			});
+		
+	}
+	);
+
+	
+
+</script>
+</body>
+</html>

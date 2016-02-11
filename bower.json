@@ -1,0 +1,29 @@
+{
+  "name": "Datos Abiertos - Curso de Verano",
+  "authors": [
+    "Marcos Benitez - Marcos Peralta - Antonella Duarte"
+  ],
+  "description": "Proyecto para la visualización de datos sobre infracciones de transito",
+  "main": "WEB-INF/lib",
+  "moduleType": [],
+  "keywords": [
+    "HTML5"
+  ],
+  "license": "cc",
+  "homepage": "http://localhost:8080/datos-abiertos",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jQuery": "~2.1.1",
+    "bootstrap": "^3.3.6",
+    "leaflet": "^0.7.7",
+    "datatables": "^1.10.10",
+    "highcharts": "^4.2.3"
+  }
+}
