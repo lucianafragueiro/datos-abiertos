@@ -2,6 +2,9 @@ package data.open.py.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class Conexion {
@@ -24,9 +27,7 @@ public class Conexion {
 	public static Connection getConnection(){
 		return getInstance().con;
 	}
-	
-	
-	
+		
 	private void createConnection(){
 		String host;
 		String port;
@@ -43,10 +44,26 @@ public class Conexion {
 		url = "jdbc:postgresql://"+host+":"+port+"/"+db;
 		
 		try {
+			Class.forName("org.postgresql.Driver");
 			con = DriverManager.getConnection(url,user,pass);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static ResultSet getResultByQuery(String query){
+		Statement statm;
+		ResultSet result = null;
+		
+		try {
+			statm = getConnection().createStatement();
+			result = statm.executeQuery(query);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+		
 	}
 	
 }

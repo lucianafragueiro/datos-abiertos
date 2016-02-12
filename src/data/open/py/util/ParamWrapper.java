@@ -17,6 +17,8 @@ public class ParamWrapper {
 	 private String departamento_registro_conducir ;
 	 private Integer pagina = 0;
 	 private Integer limite = 10;
+	 private Integer cantida_reg;
+	 private Integer cantidad_pag;
 	 
 	 
 	public String getId_Multa() {
@@ -97,6 +99,18 @@ public class ParamWrapper {
 	}
 	public void setLimite(Integer limite) {
 		this.limite = limite;
+	}
+	public Integer getCantida_reg() {
+		return cantida_reg;
+	}
+	public void setCantida_reg(Integer cantida_reg) {
+		this.cantida_reg = cantida_reg;
+	}
+	public Integer getCantidad_pag() {
+		return cantidad_pag;
+	}
+	public void setCantidad_pag(Integer cantidad_pag) {
+		this.cantidad_pag = cantidad_pag;
 	}
 	
 	 

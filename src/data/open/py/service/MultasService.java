@@ -1,6 +1,5 @@
 package data.open.py.service;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -49,6 +48,7 @@ public class MultasService {
 			buffer.append(where);
 		}
 		
+		
 		buffer.append(" order by id_multa desc");
 		buffer.append(" limit "+params.getLimite());
 		buffer.append(" offset "+params.getPagina());
@@ -56,25 +56,8 @@ public class MultasService {
 		try{
 			
 			statm = Conexion.getConnection().createStatement();
+			System.out.println("sql: "+buffer.toString());
 			result = statm.executeQuery(buffer.toString());
-			buffer.append("SELECT "
-					+ " id_multa, "
-					+ " codigo_sancion, "
-					+ " descripcion, "
-					+ " tipo_vehiculo, "
-					+ " fecha_sancion, "
-					+ " hora_sancion, "
-					+ " monto, "
-					+ " estado_multa, "
-					+ " fecha_cobro, "
-					+ " documento_identidad, "
-					+ " conductor, "
-					+ " nro_chapa, "
-					+ " nro_registro, "
-					+ " ciudad_registro_conducir,"
-					+ " departamento_registro_conducir, "
-					+ " destacamento "
-				+ " FROM multas_mopc ");
 			
 			while(result.next()){
 				Multa multa = new Multa();
