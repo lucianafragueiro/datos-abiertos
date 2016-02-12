@@ -1,8 +1,12 @@
+<%@page import="java.io.ByteArrayOutputStream"%>
+<%@page import="data.open.py.util.ResponseWrapper"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="data.open.py.util.ParamWrapper"%>
 <%@page import="data.open.py.util.CommonClass"%>
 <%@page import="data.open.py.entidad.Multa"%>
 <%@page import="java.util.*"%>
+<%@page import="com.fasterxml.jackson.databind.ObjectMapper" %>
+<%@page import="org.codehaus.jackson.*" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -37,20 +41,18 @@
 	params.setCantidad_pag(map.get("cant_pag"));
 
 %>
-<table >
 	<% 
 		ArrayList<Multa> list =  multaService.getListMultas(params);
-		for(int i=0; i< list.size();i++){
-			Multa m = (Multa)list.get(i);
-	%>
-	<tr>
-		<td><%=m.getIdMulta() %></td>
-		<td><%=m.getDescripcion() %></td>
-		<td><%=m.getFechaSancion() %></td>
-		<td><%=m.getTipoVehiculo() %></td>
-		<td><%=m.getConductor() %></td>
-	</tr>
-	<%
-	}
-	%>
-</table>
+	    ResponseWrapper respon = new ResponseWrapper();
+	    respon.setCanPag(params.getCantidad_pag());
+	    respon.setCanReg(params.getCantida_reg());
+	    respon.setPag(params.getPagina());
+	    Multa[] multas = list.toArray(new Multa[list.size()]);
+	 	respon.setMultas(multas);
+	 	ObjectMapper mapper = new ObjectMapper();
+	 	ByteArrayOutputStream bos = new ByteArrayOutputStream();
+	 	mapper.writeValue(bos, respon);
+	 	response.setContentType("application/json");
+	 	out.write(mapper.writeValueAsString(respon));
+	 	
+		%>
