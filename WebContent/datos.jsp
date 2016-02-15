@@ -28,26 +28,29 @@
   String limite = request.getParameter("limit") != null ? request.getParameter("limit") : "10";
   String cantida_reg = request.getParameter("cant_reg") != null ? request.getParameter("cant_reg") : null;
   String cantidad_pag = request.getParameter("cant_pag") != null ? request.getParameter("cant_pag") : null;
-  
   ParamWrapper params = new ParamWrapper();
-  String query = "SELECT COUNT(*) FROM multas_mopc";
-
-	Map<String,Integer> map = CommonClass.pagination(query,params.getLimite());
-	
-	params.setCantida_reg(map.get("cant_reg"));
+		
 	params.setId_Multa(id_multa);
 	params.setPagina(Integer.parseInt(pagina));
+	
+	StringBuffer query = multaService.getPaginationQuery(params);
+	Map<String,Integer> map = CommonClass.pagination(query.toString(),params.getLimite());
+	params.setCantidad_reg_filter(map.get("cant_reg"));
 	params.setCantidad_pag(map.get("cant_pag"));
+	
+	String consulta = "SELECT COUNT(*) FROM multas_mopc ";
+	 map = CommonClass.pagination(consulta,params.getLimite());
+	 params.setCantida_reg(map.get("cant_reg"));
 
 %>
 	<% 
 		ArrayList<Multa> list =  multaService.getListMultas(params);
 	    ResponseWrapper respon = new ResponseWrapper();
-	    respon.setCanPag(params.getCantidad_pag());
-	    respon.setCanReg(params.getCantida_reg());
-	    respon.setPag(params.getPagina());
+	    respon.setRecordsTotal(params.getCantidad_pag());
+	    respon.setRecordsFiltered(params.getCantidad_reg_filter());
+	    respon.setDraw(params.getPagina());
 	    Multa[] multas = list.toArray(new Multa[list.size()]);
-	 	respon.setMultas(multas);
+	 	respon.setData(multas);
 	 	ObjectMapper mapper = new ObjectMapper();
 	 	ByteArrayOutputStream bos = new ByteArrayOutputStream();
 	 	mapper.writeValue(bos, respon);

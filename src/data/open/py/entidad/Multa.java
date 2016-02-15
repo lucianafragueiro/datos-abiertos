@@ -13,14 +13,10 @@ public class Multa {
 	 private Integer monto;
 	 private String estadoMulta;
 	 private Date fechaCobro ;
-	 private String documentoIdentidad ;
-	 private String conductor ;
-	 private String nroChapa ;
-	 private String nroRegistro ;
 	 private String ciudadRegistroConducir ;
 	 private String departamentoRegistroConducir ;
-	 
 	 private String destacamento;
+	 
 	public String getIdMulta() {
 		return idMulta;
 	}
@@ -75,30 +71,7 @@ public class Multa {
 	public void setFechaCobro(Date fechaCobro) {
 		this.fechaCobro = fechaCobro;
 	}
-	public String getDocumentoIdentidad() {
-		return documentoIdentidad;
-	}
-	public void setDocumentoIdentidad(String documentoIdentidad) {
-		this.documentoIdentidad = documentoIdentidad;
-	}
-	public String getConductor() {
-		return conductor;
-	}
-	public void setConductor(String conductor) {
-		this.conductor = conductor;
-	}
-	public String getNroChapa() {
-		return nroChapa;
-	}
-	public void setNroChapa(String nroChapa) {
-		this.nroChapa = nroChapa;
-	}
-	public String getNroRegistro() {
-		return nroRegistro;
-	}
-	public void setNroRegistro(String nroRegistro) {
-		this.nroRegistro = nroRegistro;
-	}
+	
 	public String getCiudadRegistroConducir() {
 		return ciudadRegistroConducir;
 	}

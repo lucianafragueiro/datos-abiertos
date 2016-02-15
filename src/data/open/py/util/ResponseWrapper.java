@@ -1,51 +1,48 @@
 package data.open.py.util;
 
-import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.Map;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import data.open.py.entidad.Multa;
-import data.open.py.service.MultasService;
 
 public class ResponseWrapper {
 
-	Integer canReg;
-	Integer canPag;
-	Integer pag;
-	Multa[] multas;
+	Integer recordsTotal;
+	Integer recordsFiltered;
+	Integer draw;
+	Multa[] data;
+	
 
-	public Integer getCanReg() {
-		return canReg;
+	public Multa[] getData() {
+		return data;
 	}
 
-	public void setCanReg(Integer canReg) {
-		this.canReg = canReg;
+	public void setData(Multa[] data) {
+		this.data = data;
 	}
 
-	public Integer getCanPag() {
-		return canPag;
+	public Integer getRecordsTotal() {
+		return recordsTotal;
 	}
 
-	public void setCanPag(Integer canPag) {
-		this.canPag = canPag;
+	public void setRecordsTotal(Integer recordsTotal) {
+		this.recordsTotal = recordsTotal;
 	}
 
-	public Integer getPag() {
-		return pag;
+	public Integer getRecordsFiltered() {
+		return recordsFiltered;
 	}
 
-	public void setPag(Integer pag) {
-		this.pag = pag;
+	public void setRecordsFiltered(Integer recordsFiltered) {
+		this.recordsFiltered = recordsFiltered;
 	}
 
-	public Multa[] getMultas() {
-		return multas;
+
+	public Integer getDraw() {
+		return draw;
 	}
 
-	public void setMultas(Multa[] multas) {
-		this.multas = multas;
+	public void setDraw(Integer draw) {
+		this.draw = draw;
 	}
+
+	
 
 }

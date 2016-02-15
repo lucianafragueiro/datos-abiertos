@@ -29,6 +29,7 @@ public class CommonClass {
 						&& !nombreCampo.equals("limite")
 						&& !nombreCampo.equals("cantida_reg")
 						&& !nombreCampo.equals("cantidad_pag")
+						&& !nombreCampo.equals("cantidad_reg_filter")
 						){
 					switch (tipoCampo) {
 					case "java.lang.String":

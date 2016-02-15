@@ -3,6 +3,7 @@ package data.open.py.service;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Map;
 
 import data.open.py.connection.Conexion;
 import data.open.py.entidad.Multa;
@@ -21,19 +22,19 @@ public class MultasService {
 							+ " id_multa, "
 							+ " codigo_sancion, "
 							+ " descripcion, "
-							+ " tipo_vehiculo, "
-							+ " fecha_sancion, "
-							+ " hora_sancion, "
-							+ " monto, "
-							+ " estado_multa, "
-							+ " fecha_cobro, "
-							+ " documento_identidad, "
-							+ " conductor, "
-							+ " nro_chapa, "
-							+ " nro_registro, "
-							+ " ciudad_registro_conducir,"
-							+ " departamento_registro_conducir, "
-							+ " destacamento "
+							+ " tipo_vehiculo "
+//							+ " fecha_sancion, "
+//							+ " hora_sancion, "
+//							+ " monto, "
+//							+ " estado_multa, "
+//							+ " fecha_cobro, "
+//							+ " documento_identidad, "
+//							+ " conductor, "
+//							+ " nro_chapa, "
+//							+ " nro_registro, "
+//							+ " ciudad_registro_conducir,"
+//							+ " departamento_registro_conducir, "
+//							+ " destacamento "
 						+ " FROM multas_mopc ");
 	}
 	
@@ -65,18 +66,18 @@ public class MultasService {
 				multa.setCodigoSancion(result.getString(2));
 				multa.setDescripcion(result.getString(3));
 				multa.setTipoVehiculo(result.getString(4));
-				multa.setFechaSancion(result.getDate(5));
-				multa.setHoraSancion(result.getString(6));
-				multa.setMonto(result.getInt(7));
-				multa.setEstadoMulta(result.getString(8));
-				multa.setFechaCobro(result.getDate(9));
-				multa.setDocumentoIdentidad(result.getString(10));
-				multa.setConductor(result.getString(11));
-				multa.setNroChapa(result.getString(12));
-				multa.setNroRegistro(result.getString(13));
-				multa.setCiudadRegistroConducir(result.getString(14));
-				multa.setDepartamentoRegistroConducir(result.getString(15));
-				multa.setDestacamento(result.getString(16));
+//				multa.setFechaSancion(result.getDate(5));
+//				multa.setHoraSancion(result.getString(6));
+//				multa.setMonto(result.getInt(7));
+//				multa.setEstadoMulta(result.getString(8));
+//				multa.setFechaCobro(result.getDate(9));
+//				multa.setDocumentoIdentidad(result.getString(10));
+//				multa.setConductor(result.getString(11));
+//				multa.setNroChapa(result.getString(12));
+//				multa.setNroRegistro(result.getString(13));
+//				multa.setCiudadRegistroConducir(result.getString(14));
+//				multa.setDepartamentoRegistroConducir(result.getString(15));
+//				multa.setDestacamento(result.getString(16));
 				
 				multas.add(multa);
 				
@@ -87,6 +88,20 @@ public class MultasService {
 		}
 		
 		return multas;
+	}
+	
+	public StringBuffer getPaginationQuery(ParamWrapper params){
+		StringBuffer query = new StringBuffer();
+		query.append("SELECT COUNT(*) FROM multas_mopc ");
+		String where = CommonClass.getFilterFromParams(params);
+		ArrayList<Multa> multas = new ArrayList<>();
+		
+		if(!where.equals("")){
+			query.append(" where ");
+			query.append(where);
+		}
+		System.out.println("sql: "+query.toString());
+		return query;
 	}
 
 }

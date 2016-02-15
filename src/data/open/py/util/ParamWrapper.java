@@ -19,6 +19,8 @@ public class ParamWrapper {
 	 private Integer limite = 10;
 	 private Integer cantida_reg;
 	 private Integer cantidad_pag;
+	 private Integer cantidad_reg_filter;
+	 
 	 
 	 
 	public String getId_Multa() {
@@ -111,6 +113,12 @@ public class ParamWrapper {
 	}
 	public void setCantidad_pag(Integer cantidad_pag) {
 		this.cantidad_pag = cantidad_pag;
+	}
+	public Integer getCantidad_reg_filter() {
+		return cantidad_reg_filter;
+	}
+	public void setCantidad_reg_filter(Integer cantidad_reg_filter) {
+		this.cantidad_reg_filter = cantidad_reg_filter;
 	}
 	
 	 
