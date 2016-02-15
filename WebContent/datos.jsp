@@ -6,7 +6,6 @@
 <%@page import="data.open.py.entidad.Multa"%>
 <%@page import="java.util.*"%>
 <%@page import="com.fasterxml.jackson.databind.ObjectMapper" %>
-<%@page import="org.codehaus.jackson.*" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
