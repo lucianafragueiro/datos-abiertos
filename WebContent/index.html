@@ -36,33 +36,32 @@
 		</div>
 		<div id="datos" class="tab-pane fade in text-center">
 			<div class="row">
-				<div class="col-md-2"></div>
-				<div class="col-md-8">
-					<table id="tbl-multas"
-						class="display  table table-striped table-bordered table-hover"
-						width="100%" cellspacing="0">
+			<div class = "col-md-1"></div>
+				<div class="col-md-10">
+					<div class="table-responsive">
+					<table id="tbl-multas"  
+						class="display  table-condensed"
+						width="100%" cellspacing="0" style = "font-size: 12px;")>
 						<thead>
 							<tr>
 								<th>Multa</th>
-								<th>Cod. Sancion</th>
-								<th>Descripcion</th>
-								<th>Tipo Vehiculo</th>
-								
+								<th>Cod. Sanci&oacute;n</th>
+								<th>Descripci&oacute;n</th>
+								<th>Tipo Veh&iacute;culo</th>
+								<th>Fecha Sanci&oacute;n</th>
+								<th>Hora Sanci&oacute;n</th>
+								<th>Monto</th>
+								<th>Estado</th>
+								<th>Fecha de Pago</th>
+								<th>Ciudad del Registro</th>
+								<th>Departamento del Registro</th>
+								<th>Destacamento del Registro</th>
 							</tr>
 						</thead>
-						<tfoot>
-							<tr>
-								<th>Multa</th>
-								<th>Cod. Sancion</th>
-								<th>Descripcion</th>
-								<th>Tipo Vehiculo</th>
-								
-							</tr>
-
-						</tfoot>
 					</table>
+					</div>
 				</div>
-				<div class="col-md-2"></div>
+				<div class="col-md-1"></div>
 			</div>
 		</div>
 	</div>
@@ -108,10 +107,16 @@
 		 	                  { "data": "idMulta" },
 		 	                  { "data": "codigoSancion" },
 		 	                  { "data": "descripcion" },
-		 	                  { "data": "tipoVehiculo" }
-		 	                  
-		 	              ]
-		 	         ,
+		 	                  { "data": "tipoVehiculo" },
+		 	                  { "data": "fechaSancion" },
+		 	                  { "data": "horaSancion" },
+		 	                  { "data": "monto" },
+		 	                  { "data": "estadoMulta" },
+		 	                  { "data": "fechaCobro" },
+		 	                  { "data": "ciudadRegistroConducir" },
+		 	                  { "data": "departamentoRegistroConducir" },
+		 	                  { "data": "destacamento" }		 	                  
+		 	              ],
 					language : {
 						"sProcessing" : "Procesando...",
 						"sLengthMenu" : "Mostrar _MENU_ registros",
