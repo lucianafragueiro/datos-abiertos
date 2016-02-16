@@ -13,11 +13,15 @@
 	src="./lib/bootstrap/dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="./lib/leaflet/dist/leaflet.js"></script>
 <script type="text/javascript" src="./lib/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="./lib/py-dptos.js" ></script>
 
 
 <style>
 #map {
 	margin: 0 auto;
+}
+.td-title{
+	font-weight: bold;
 }
 </style>
 <body>
@@ -75,21 +79,26 @@
 		var map = L.map('map').setView([-23.4510191,-58.0437109	], 6);
 		map.addLayer(osm);
 		// Disable drag and zoom handlers.
-			map.dragging.disable();
-			map.touchZoom.disable();
-			map.doubleClickZoom.disable();
-			map.scrollWheelZoom.disable();
-			map.keyboard.disable();
+// 			map.dragging.disable();
+// 			map.touchZoom.disable();
+// 			map.doubleClickZoom.disable();
+// 			map.scrollWheelZoom.disable();
+// 			map.keyboard.disable();
 		map.on('load',function(){
 			alert('cargando....');
 		});
 		
-		jQuery.get("paraguay.json",function(data){
-			L.geoJson(data).addTo(map);
-			});
+			L.geoJson(statesData,{
+				style:function(feature){
+						return feature.properties.style;
+					},
+					onEachFeature: function (feature, layer){
+						layer.bindPopup(createPopup(feature.properties.name,feature.properties.cantidad));
+						}
+				}).addTo(map);
 
 			loadTable();
-		}
+		}	
 	
 	);
 
@@ -137,6 +146,16 @@
 						}
 					}
 				});
+		}
+
+	function createPopup(dpto, cantidad){
+			var table = "<table class='table table-striped table-condensed' > ";
+			table += "<tr> <td class='td-title'> Departamento </td>";
+			table += " <td > "+dpto+" </td> </tr>";
+			table += "<tr> <td class='td-title'> Cantidad de Infracciones </td>";
+			table += " <td> "+cantidad+" </td> </tr>";
+			table += "</table>";
+			return table;
 		}
 
 	

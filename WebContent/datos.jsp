@@ -46,7 +46,7 @@
 	<% 
 		ArrayList<Multa> list =  multaService.getListMultas(params);
 	    ResponseWrapper respon = new ResponseWrapper();
-	    respon.setRecordsTotal(params.getCantidad_pag());
+	    respon.setRecordsTotal(params.getCantida_reg());
 	    respon.setRecordsFiltered(params.getCantidad_reg_filter());
 	    respon.setDraw(params.getPagina());
 	    Multa[] multas = list.toArray(new Multa[list.size()]);
