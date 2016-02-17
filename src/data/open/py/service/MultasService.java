@@ -100,7 +100,7 @@ public class MultasService {
 	}
 	
 	public CharWrapper getCharData(String dpto){
-		System.out.println("getCharData");
+
 		String query = ""
 				+ " SELECT (SELECT coalesce (COUNT(estado_multa),0) as cantidad "
 				+ " FROM multas_mopc "

@@ -65,7 +65,7 @@
 		<div id="mapa" class="tab-pane fade in active">
 			<div id="map" style="width: 80%; height: 450px;"></div>
 			<div id='container'
-				style='height: 500px; width: 700px; margin: 0 auto; display: none;'>
+				style='height: 70%; width: 80%; margin: 0 auto; display: none;'>
 			</div>
 		</div>
 		<div id="datos" class="tab-pane fade in text-center">
@@ -109,17 +109,20 @@
 // 		var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 50});		
 		var map = L.map('map').setView([-23.4510191,-58.0437109	], 6);
 		//map.addLayer(osm);
-		    map.dragging.disable();
-            map.touchZoom.disable();
-            map.doubleClickZoom.disable();
+		    //map.dragging.disable();
+            //map.touchZoom.disable();
+            //map.doubleClickZoom.disable();
             map.scrollWheelZoom.disable();
-            map.keyboard.disable();
+            //map.keyboard.disable();
 		
 		
 			L.geoJson(statesData,{
 				style:style,
 					onEachFeature: function (feature, layer){
 						//layer.bindPopup(createPopup(feature.properties.name,feature.properties.cantidad));
+						//layer.bindPopup(feature.properties.name, {closeButton: false});
+                		//layer.on('mouseover', function() { layer.openPopup(); });
+                		//layer.on('mouseout', function() { layer.closePopup(); });
 						layer.on({click:crearGrafico});
 						}
 				}).addTo(map);
@@ -159,7 +162,7 @@
 
 	function quitaAcentos(str){
 		for (var i=0;i<str.length;i++){
-		//Sustituye "á é í ó ú"
+		//Sustituye "á é í ó ú Ñ ñ"
 		if (str.charAt(i)=="á") str = str.replace(/á/,"a");
 		if (str.charAt(i)=="é") str = str.replace(/é/,"e");
 		if (str.charAt(i)=="í") str = str.replace(/í/,"i");
@@ -253,7 +256,8 @@
 		}
 
 	function crearGrafico(ev){
-			var dpto = ev.target.feature.properties.name
+			var dpto = ev.target.feature.properties.name;
+			$('#myModal').modal('show');
 			$.ajax({
 					url:'datos.jsp?dpto='+quitaAcentos(dpto),
 					contentType: "application/json; charset=utf-8",
@@ -277,29 +281,35 @@
 								listSeries[1].data[i] = data.series[i].estado[1].data;
 								listSeries[2].data[i] = data.series[i].estado[2].data;	
 							}
-
-							dibujarHisto();
-							html = $("#container").css({display:"block"});
-					}
+							$("#container").html("");
+							dibujarHisto(dpto);
+							$("#container").css({display:"block"});
+							$('#myModal').modal('hide')
+					},
+					error:function(){
+						$('#myModal').modal('hide')
+						}
 				});
-			//return html;
 		}
 
-	function dibujarHisto() {
+	function dibujarHisto(dpto) {
 		
 		$('#container').highcharts({
 			chart : {
 				type : 'column'
 			},
 			title : {
-				text : 'Listado de infracciones por cuidad de emision de Licencia'
+				text : '<h3>Departamento  '+dpto+'</h3>'
 			},
+			subtitle:{
+				text: "Listado de infracciones por cuidad de emision de Licencia"
+				},
 			exporting : {
 				enabled : false
 			},
 			yAxis : {
 				allowDecimals: false,
-				 min: 100,
+				min:0,
 				title : {
 					text : 'Cantidad de Infracciones'
 				}
@@ -308,16 +318,33 @@
 				categories : listCategorias,
 				title : {
 					text : 'Distritos emisor de Licencias'
-				}
+				},
+				type: 'category',
+				 labels: {
+		                rotation: -45,
+		                style: {
+		                    fontSize: '8px',
+		                    fontFamily: 'Verdana, sans-serif'
+		                }
+		            }
 			},
 
 			series : listSeries
 		});
 
 	}
-
-	
-
 </script>
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Procesando....</h4>
+				</div>
+				<div class="modal-body text-center">
+					<img alt="loading" src="images/ajax-loader.gif">
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
