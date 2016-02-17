@@ -64,8 +64,9 @@
 	<div class="tab-content">
 		<div id="mapa" class="tab-pane fade in active">
 			<div id="map" style="width: 80%; height: 450px;"></div>
-			<div id='container' style='height: 500px; width: 700px; margin: 0 auto; display: none;'>
-		</div>
+			<div id='container'
+				style='height: 500px; width: 700px; margin: 0 auto; display: none;'>
+			</div>
 		</div>
 		<div id="datos" class="tab-pane fade in text-center">
 			<div class="row">
@@ -101,19 +102,8 @@
 
 	<script type="text/javascript">
 	    var html = "";
-		var categorias = [];
-		var series = [{
-				'name':'Pagado',
-				'data':[]
-			},
-			{
-				'name':'Pendiente',
-				'data':[]
-			},
-			{
-				'name':'Amonestado',
-				'data':[]
-			}];
+		var listCategorias = [];
+		var listSeries = [];
 	$('document').ready(function(){
 // 		var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 // 		var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 50});		
@@ -130,7 +120,7 @@
 				style:style,
 					onEachFeature: function (feature, layer){
 						//layer.bindPopup(createPopup(feature.properties.name,feature.properties.cantidad));
-						layer.on({click:crearGrafico(feature.properties.name)});
+						layer.on({click:crearGrafico});
 						}
 				}).addTo(map);
 
@@ -166,6 +156,20 @@
 			
 		}
 	);
+
+	function quitaAcentos(str){
+		for (var i=0;i<str.length;i++){
+		//Sustituye "á é í ó ú"
+		if (str.charAt(i)=="á") str = str.replace(/á/,"a");
+		if (str.charAt(i)=="é") str = str.replace(/é/,"e");
+		if (str.charAt(i)=="í") str = str.replace(/í/,"i");
+		if (str.charAt(i)=="ó") str = str.replace(/ó/,"o");
+		if (str.charAt(i)=="ú") str = str.replace(/ú/,"u");
+		if (str.charAt(i)=="Ñ") str = str.replace(/Ñ/,"N");
+		if (str.charAt(i)=="ñ") str = str.replace(/ñ/,"ñ");
+		}
+		return str;
+		} 
 
 	function getColor(d) {
 	    return d > 80000 ? '#800026' :
@@ -248,16 +252,30 @@
 				});
 		}
 
-	function crearGrafico(dpto){
+	function crearGrafico(ev){
+			var dpto = ev.target.feature.properties.name
 			$.ajax({
-					url:'datos.jsp?dpto='+dpto,
+					url:'datos.jsp?dpto='+quitaAcentos(dpto),
+					contentType: "application/json; charset=utf-8",
 					dataType:'json',
 					success: function(data){
-							categorias = data.categorias;
+						listSeries = [{
+							'name':'Pagado',
+							'data':[]
+						},
+						{
+							'name':'Pendiente',
+							'data':[]
+						},
+						{
+							'name':'Amonestado',
+							'data':[]
+						}];
+						listCategorias = data.categorias;
 							for(var i=0;i<data.series.length;i++){
-								series[0].data = data.series[i].estado[0].data;
-								series[1].data = data.series[i].estado[1].data;
-								series[2].data = data.series[i].estado[2].data;	
+								listSeries[0].data[i] = data.series[i].estado[0].data;
+								listSeries[1].data[i] = data.series[i].estado[1].data;
+								listSeries[2].data[i] = data.series[i].estado[2].data;	
 							}
 
 							dibujarHisto();
@@ -280,15 +298,20 @@
 				enabled : false
 			},
 			yAxis : {
+				allowDecimals: false,
+				 min: 100,
 				title : {
 					text : 'Cantidad de Infracciones'
 				}
 			},
 			xAxis : {
-				categories : categorias
+				categories : listCategorias,
+				title : {
+					text : 'Distritos emisor de Licencias'
+				}
 			},
 
-			series : series
+			series : listSeries
 		});
 
 	}
