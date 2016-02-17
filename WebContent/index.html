@@ -15,6 +15,7 @@
 <script type="text/javascript" src="./lib/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="./lib/py-dptos.js"></script>
 <script type="text/javascript" src="./lib/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
 
 
 <style>
@@ -65,8 +66,9 @@
 		<div id="mapa" class="tab-pane fade in active">
 			<div id="map" style="width: 80%; height: 450px;"></div>
 			<div id='container'
-				style='height: 70%; width: 80%; margin: 0 auto; display: none;'>
+				style='height: 70%; width: 80%; margin: 0 auto;'>
 			</div>
+
 		</div>
 		<div id="datos" class="tab-pane fade in text-center">
 			<div class="row">
@@ -195,6 +197,95 @@
 	        fillOpacity: 0.7
 	    };
 	}
+	$(function () {
+	    $('#container').highcharts({
+
+	        chart: {
+	            type: 'bubble',
+	            plotBorderWidth: 1,
+	            zoomType: 'xy'
+	        },
+	        
+	        tooltip: {
+	            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+	            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.z}</b>'
+	        },
+
+	        title: {
+	            text: 'Highcharts bubbles with radial gradient fill'
+	        },
+
+	        xAxis: {
+	            gridLineWidth: 1,
+	            max: 12,
+	            min : 1,
+	            allowDecimals: false,
+	            title: {
+		            text: 'Meses'}
+	        },
+
+	        yAxis: {
+	            startOnTick: false,
+	            endOnTick: false,
+	            allowDecimals: false,
+	            title: {
+		            text: 'Cantidad de Infracciones'}
+	        },
+
+	        series: [{
+		        name: 'Montos 2014',
+	            data: [
+[1,3906,1000552236],
+[2,3163,859542292],
+[3,4306,1311485032],
+[4,4068,1278871724],
+[5,5094,1533148168],
+[6,4005,1197665636],
+[7,4599,1269067772],
+[8,5187,1648785888],
+[9,4869,1600482056],
+[10,5100,1758988332],
+[11,4103,1371644332],
+[12,4042,1354504400]
+	            ],
+	            marker: {
+	                fillColor: {
+	                    radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+	                    stops: [
+	                        [0, 'rgba(255,255,255,0.5)'],
+	                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0.5).get('rgba')]
+	                    ]
+	                }
+	            }
+	        }, {
+		        name: 'Montos 2015',
+	            data: [
+[1,4828,1542080144],
+[2,4606,1405904540],
+[3,5133,1618420636],
+[4,4793,1687548372],
+[5,3738,1304140092],
+[6,2617,1224693252],
+[7,1512,692705580],
+[8,1766,816660256],
+[9,1772,825795044],
+[10,1936,870324916],
+[11,2301,1046796016],
+[12,2728,1275219996]
+	            ],
+	            marker: {
+	                fillColor: {
+	                    radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+	                    stops: [
+	                        [0, 'rgba(255,255,255,0.5)'],
+	                        [1, Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0.5).get('rgba')]
+	                    ]
+	                }
+	            }
+	        }]
+
+	    });
+	});
 		
 
 	function loadTable(){
