@@ -1,5 +1,6 @@
 package data.open.py.util;
 
+import data.open.py.entidad.Distrito;
 import data.open.py.entidad.Multa;
 
 public class ResponseWrapper {
@@ -8,7 +9,25 @@ public class ResponseWrapper {
 	Integer recordsFiltered;
 	Integer draw;
 	Multa[] data;
+	String  categorias[];
+	Distrito series [];
 	
+
+	public String[] getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(String[] categorias) {
+		this.categorias = categorias;
+	}
+
+	public Distrito[] getSeries() {
+		return series;
+	}
+
+	public void setSeries(Distrito[] series) {
+		this.series = series;
+	}
 
 	public Multa[] getData() {
 		return data;

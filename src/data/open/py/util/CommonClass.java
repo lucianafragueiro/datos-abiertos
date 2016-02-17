@@ -30,25 +30,26 @@ public class CommonClass {
 						&& !nombreCampo.equals("cantida_reg")
 						&& !nombreCampo.equals("cantidad_pag")
 						&& !nombreCampo.equals("cantidad_reg_filter")
+						&& !nombreCampo.equals("draw")
 						){
 					switch (tipoCampo) {
 					case "java.lang.String":
-						buffer.append(nombreCampo + " ilike "+ "'%"+field.get(params)+"%' and ");
+						buffer.append(nombreCampo + " ilike "+ "'%"+field.get(params)+"%' or ");
 						break;
 
 					case "java.util.Date":
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 						String date = sdf.format(field.get(params));
-						buffer.append(nombreCampo + " to_date("+ "'"+date+"','YYYY-MM-DD') and ");
+						buffer.append(nombreCampo + " to_date("+ "'"+date+"','YYYY-MM-DD') or ");
 						break;
 					default :
-						buffer.append(nombreCampo + " = "+ "'"+field.get(params)+"' and ");
+						buffer.append(nombreCampo + " = "+ "'"+field.get(params)+"' or ");
 						break;
 
 					}
 				}
 			}
-			int index = buffer.lastIndexOf("and");
+			int index = buffer.lastIndexOf("or");
 			if(index != -1){
 				toRet = buffer.substring(0,index);
 			}

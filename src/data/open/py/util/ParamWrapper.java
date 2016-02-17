@@ -20,6 +20,7 @@ public class ParamWrapper {
 	 private Integer cantida_reg;
 	 private Integer cantidad_pag;
 	 private Integer cantidad_reg_filter;
+	 private Integer draw;
 	 
 	 
 	 
@@ -120,6 +121,13 @@ public class ParamWrapper {
 	public void setCantidad_reg_filter(Integer cantidad_reg_filter) {
 		this.cantidad_reg_filter = cantidad_reg_filter;
 	}
+	public Integer getDraw() {
+		return draw;
+	}
+	public void setDraw(Integer draw) {
+		this.draw = draw;
+	}
+	
 	
 	 
 	 
