@@ -62,6 +62,8 @@
 			<li class="active"><a data-toggle='tab' href="#mapa">Mapa</a></li>
 			<li><a data-toggle='tab' href="#datos">Datos</a></li>
 			<li><a data-toggle='tab' href="#vista" onclick="bubbleChar();">Visualización</a></li>
+			<li><a data-toggle='tab' href="#pendientes" onclick="bubbleChar2();">Multas Pagadas - No pagadas</a></li>
+			<li><a data-toggle='tab' href="#totales" onclick="bubbleChar3();">Infracciones 2015</a></li>
 		</ul>
 		<br>
 	</div>
@@ -74,17 +76,25 @@
 				style='height: 70%; width: 80%; margin: 0 auto;'>
 			</div>
 		</div>
+		<div id="pendientes" class="tab-pane fade text-center">
+			<div id='container2'
+				style='height: 70%; width: 80%; margin: 0 auto;'>
+			</div>
+		</div>
+		<div id="totales" class="tab-pane fade text-center">
+			<div id='container3'
+				style='height: 70%; width: 80%; margin: 0 auto;'>
+			</div>
+		</div>
 		<div id="datos" class="tab-pane fade in text-center">
 			<div class="row">
 				<div class="col-md-1"></div>
-				<div class="col-md-10">
+				<div class="col-md-9">
 					<div class="table-responsive">
-						<table id="tbl-multas" class="display  table-condensed"
-							width="100%" cellspacing="0" style="font-size: 12px;")>
+						<table id="tbl-multas" class="display  table-condensed" style='font-size: 12px; width:100%;'>
 							<thead>
 								<tr>
-									<th>Multa</th>
-									<th>Cod. Sanci&oacute;n</th>
+									<th>C&oacute;digo Sanci&oacute;n</th>
 									<th>Descripci&oacute;n</th>
 									<th>Tipo Veh&iacute;culo</th>
 									<th>Fecha Sanci&oacute;n</th>
@@ -211,12 +221,12 @@
 	        },
 	        
 	        tooltip: {
-	            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-	            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.z}</b>'
+	            headerFormat: '<span style="font-size:11px"><b>{series.name}</b></span><br>',
+	            pointFormat: '<span style="color:{point.color}">Infracciones</span>: <b>{point.y}</b><br><span style="color:{point.color}">{point.name}</span>: <b>{point.z}</b>'
 	        },
 
 	        title: {
-	            text: 'Grafico de Cobro de Infracciones  2014 - 2015'
+	            text: 'Gráfico de Infracciones Pagadas 2014 - 2015'
 	        },
 
  		xAxis: {
@@ -285,8 +295,155 @@
 
 	    });
 	};
-		
+	
 
+
+	function bubbleChar2 () {
+	    $('#container2').highcharts({
+
+	        chart: {
+	            type: 'bubble',
+	            plotBorderWidth: 1,
+	            zoomType: 'xy'
+	        },
+	        
+	        tooltip: {
+	            headerFormat: '<span style="font-size:11px"><b>{series.name}</b></span><br>',
+	            pointFormat: '<span style="color:{point.color}">Infracciones</span>: <b>{point.y}</b><br><span style="color:{point.color}">{point.name}</span>: <b>{point.z}</b>'
+	        },
+
+	        title: {
+	            text: 'Gráfico de Infracciones Pagadas y Pendientes 2015'
+	        },
+
+ 		xAxis: {
+            categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dic']
+        },
+
+	        yAxis: {
+	            startOnTick: false,
+	            endOnTick: false,
+	            allowDecimals: false,
+	            title: {
+		            text: 'Cantidad de Infracciones'}
+	        },
+
+	        series: [{
+		        name: 'Infracciones Pagadas',
+	            data: [
+					['Enero',4828,1542080144],
+					['Febrero',4606,1405904540],
+					['Marzo',5133,1618420636],
+					['Abril',4793,1687548372],
+					['Mayo',3738,1304140092],
+					['Junio',2617,1224693252],
+					['Julio',1512,692705580],
+					['Agosto',1766,816660256],
+					['Septiembre',1772,825795044],
+					['Octubre',1936,870324916],
+					['Noviembre',2301,1046796016],
+					['Diciembre',2728,1275219996]
+	            ],
+	            marker: {
+	                fillColor: {
+	                    radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+	                    stops: [
+	                        [0, 'rgba(255,255,255,0.5)'],
+	                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0.5).get('rgba')]
+	                    ]
+	                }
+	            }
+	        }, {
+		        name: 'Infracciones Pendientes',
+	            data: [
+					['Enero',5973,1630415524],
+					['Febrero',5646,1460548364],
+					['Marzo',5551,1551870968],
+					['Abril',6116,1982115168],
+					['Mayo',5251,1646943240],
+					['Junio',4773,2077021272],
+					['Julio',3630,1664151372],
+					['Agosto',4702,2301100588],
+					['Septiembre',5277,2526752620],
+					['Octubre',5082,2382739880],
+					['Noviembre',3780,1703296676],
+					['Diciembre',5143,2491869560]
+	            ],
+	            marker: {
+	                fillColor: {
+	                    radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+	                    stops: [
+	                        [0, 'rgba(255,255,255,0.5)'],
+	                        [1, Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0.5).get('rgba')]
+	                    ]
+	                }
+	            }
+	        }]
+	    });
+	};
+
+	function bubbleChar3 () {
+	    $('#container3').highcharts({
+
+	        chart: {
+	            type: 'bubble',
+	            plotBorderWidth: 1,
+	            zoomType: 'xy'
+	        },
+	        
+	        tooltip: {
+	            headerFormat: '<span style="font-size:11px"><b>{series.name}</b></span><br>',
+	            pointFormat: '<span style="color:{point.color}">Infracciones</span>: <b>{point.y}</b><br><span style="color:{point.color}">{point.name}</span>: <b>{point.z}</b>'
+	        },
+
+	        title: {
+	            text: 'Gráfico Total de Infracciones del 2015'
+	        },
+
+ 		xAxis: {
+            categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dic']
+        },
+
+	        yAxis: {
+	            startOnTick: false,
+	            endOnTick: false,
+	            allowDecimals: false,
+	            title: {
+		            text: 'Cantidad de Infracciones'}
+	        },
+
+	        series: [{
+		        name: 'Infracciones 2015',
+				
+	            data: [
+					['Enero',10801,3172495668],
+					['Febrero',10252,2866452904],
+					['Marzo',10684,3170291604],
+					['Abril',10909,3669663540],
+					['Mayo',8989,2951083332],
+					['Junio',7390,3301714524],
+					['Julio',5142,2356856952],
+					['Agosto',6468,3117760844],
+					['Septiembre',7049,3352547664],
+					['Octubre',7018,3253064796],
+					['Noviembre',6081,2750092692],
+					['Diciembre',7871,3767089556]
+	            ],
+	            marker: {
+		            
+	                fillColor: {
+	                    radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+	                    stops: [
+	                        [0, 'rgba(255,255,255,0.5)'],
+	                        [1, Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0.5).get('rgba')]
+	                    ]
+	                }
+	            }
+	        }]
+
+	    });
+	};
+	
 	function loadTable(){
 		
 		$("#tbl-multas").DataTable(
@@ -305,18 +462,17 @@
 		 	            rightColumns: 1
 		 	        },
 		 	       "columns": [
-		 	                  { "data": "idMulta" },
-		 	                  { "data": "codigoSancion" },
-		 	                  { "data": "descripcion" },
-		 	                  { "data": "tipoVehiculo" },
-		 	                  { "data": "fechaSancion" },
-		 	                  { "data": "horaSancion" },
-		 	                  { "data": "monto" },
-		 	                  { "data": "estadoMulta" },
-		 	                  { "data": "fechaCobro" },
-		 	                  { "data": "ciudadRegistroConducir" },
-		 	                  { "data": "departamentoRegistroConducir" },
-		 	                  { "data": "destacamento" }		 	                  
+			 	                  { "data": "codigoSancion"},
+			 	                  { "data": "descripcion"},
+			 	                  { "data": "tipoVehiculo"},
+			 	                  { "data": "fechaSancion"},
+			 	                  { "data": "horaSancion"},
+			 	                  { "data": "monto"},
+			 	                  { "data": "estadoMulta"},
+			 	                  { "data": "fechaCobro"},
+			 	                  { "data": "ciudadRegistroConducir"},
+			 	                  { "data": "departamentoRegistroConducir"},
+			 	                  { "data": "destacamento"}			 	                  
 		 	              ],
 					language : {
 						"sProcessing" : "Procesando ...",
