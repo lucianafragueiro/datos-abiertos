@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet" href="./lib/leaflet/dist/leaflet.css" />
 <link rel="stylesheet" href="./css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="./css/font-awesome.min.css" />
+ 
 <!-- <script type="text/javascript" src="./lib/jQuery/dist/jquery.min.js"></script> -->
 <script type="text/javascript" src="./lib/jquery-1.12.0.min.js"></script>
 <script type="text/javascript"
@@ -15,7 +17,7 @@
 <script type="text/javascript" src="./lib/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="./lib/py-dptos.js"></script>
 <script type="text/javascript" src="./lib/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="./lib/highcharts-more.js"></script>
 
 
 <style>
@@ -59,16 +61,18 @@
 		<ul class="nav nav-tabs">
 			<li class="active"><a data-toggle='tab' href="#mapa">Mapa</a></li>
 			<li><a data-toggle='tab' href="#datos">Datos</a></li>
+			<li><a data-toggle='tab' href="#vista" onclick="bubbleChar();">Visualización</a></li>
 		</ul>
 		<br>
 	</div>
 	<div class="tab-content">
 		<div id="mapa" class="tab-pane fade in active">
 			<div id="map" style="width: 80%; height: 450px;"></div>
+		</div>
+		<div id="vista" class="tab-pane fade text-center">
 			<div id='container'
 				style='height: 70%; width: 80%; margin: 0 auto;'>
 			</div>
-
 		</div>
 		<div id="datos" class="tab-pane fade in text-center">
 			<div class="row">
@@ -154,7 +158,7 @@
 			};
 
 			info.update = function (props) {
-			    this._div.innerHTML = (props ? createPopup(props.name, props.cantidad)   : '<span>Marque un Departamento</span>');
+			    this._div.innerHTML = (props ? createPopup(props.name, props.cantidad)   : "<i class='fa fa-hand-pointer-o'></i> &nbsp; <span>Selecciones un Departamento</span>");
 			};
 
 			info.addTo(map);		
@@ -197,7 +201,7 @@
 	        fillOpacity: 0.7
 	    };
 	}
-	$(function () {
+	function bubbleChar () {
 	    $('#container').highcharts({
 
 	        chart: {
@@ -212,17 +216,12 @@
 	        },
 
 	        title: {
-	            text: 'Highcharts bubbles with radial gradient fill'
+	            text: 'Grafico de Cobro de Infracciones  2014 - 2015'
 	        },
 
-	        xAxis: {
-	            gridLineWidth: 1,
-	            max: 12,
-	            min : 1,
-	            allowDecimals: false,
-	            title: {
-		            text: 'Meses'}
-	        },
+ 		xAxis: {
+            categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dic']
+        },
 
 	        yAxis: {
 	            startOnTick: false,
@@ -235,18 +234,18 @@
 	        series: [{
 		        name: 'Montos 2014',
 	            data: [
-[1,3906,1000552236],
-[2,3163,859542292],
-[3,4306,1311485032],
-[4,4068,1278871724],
-[5,5094,1533148168],
-[6,4005,1197665636],
-[7,4599,1269067772],
-[8,5187,1648785888],
-[9,4869,1600482056],
-[10,5100,1758988332],
-[11,4103,1371644332],
-[12,4042,1354504400]
+					['Enero',3906,1000552236],
+					['Febrero',3163,859542292],
+					['Marzo',4306,1311485032],
+					['Abril',4068,1278871724],
+					['Mayo',5094,1533148168],
+					['Junio',4005,1197665636],
+					['Julio',4599,1269067772],
+					['Agosto',5187,1648785888],
+					['Setiembre',4869,1600482056],
+					['Octubre',5100,1758988332],
+					['Noviembre',4103,1371644332],
+					['Diciembre',4042,1354504400]
 	            ],
 	            marker: {
 	                fillColor: {
@@ -260,18 +259,18 @@
 	        }, {
 		        name: 'Montos 2015',
 	            data: [
-[1,4828,1542080144],
-[2,4606,1405904540],
-[3,5133,1618420636],
-[4,4793,1687548372],
-[5,3738,1304140092],
-[6,2617,1224693252],
-[7,1512,692705580],
-[8,1766,816660256],
-[9,1772,825795044],
-[10,1936,870324916],
-[11,2301,1046796016],
-[12,2728,1275219996]
+					['Enero',4828,1542080144],
+					['Febrero',4606,1405904540],
+					['Marzo',5133,1618420636],
+					['Abril',4793,1687548372],
+					['Mayo',3738,1304140092],
+					['Junio',2617,1224693252],
+					['Julio',1512,692705580],
+					['Agosto',1766,816660256],
+					['Setiembre',1772,825795044],
+					['Octubre',1936,870324916],
+					['Noviembre',2301,1046796016],
+					['Diciembre',2728,1275219996]
 	            ],
 	            marker: {
 	                fillColor: {
@@ -285,7 +284,7 @@
 	        }]
 
 	    });
-	});
+	};
 		
 
 	function loadTable(){
@@ -365,32 +364,50 @@
 						{
 							'name':'Amonestado',
 							'data':[]
-						}];
+						}
+						,
+						{
+							'name':'Anulado p/ Juzgado',
+							'data':[]
+						},
+						{
+							'name':'Prescripto',
+							'data':[]
+						}
+						];
 						listCategorias = data.categorias;
 							for(var i=0;i<data.series.length;i++){
-								listSeries[0].data[i] = data.series[i].estado[0].data;
-								listSeries[1].data[i] = data.series[i].estado[1].data;
-								listSeries[2].data[i] = data.series[i].estado[2].data;	
+										
+									for(var k=0 ;k<data.series[i].estado.length;k++){
+										for(var s=0;s< 5 ;s++ ){
+											if(listSeries[s].name == data.series[i].estado[k].name){
+												listSeries[s].data[i] = data.series[i].estado[k].data;
+											}else if(listSeries[s].data[i] === undefined ){
+												listSeries[s].data[i] = 0;
+											}
+										}
+									}												
 							}
 							$("#container").html("");
 							dibujarHisto(dpto);
-							$("#container").css({display:"block"});
+							$("#lineChart").css({display:'block;'}).modal('show');
 							$('#myModal').modal('hide')
 					},
 					error:function(){
-						$('#myModal').modal('hide')
+						$('#myModal').modal('hide');
 						}
 				});
 		}
 
 	function dibujarHisto(dpto) {
+		var descripDpto = dpto == 'Asunción' ? '' : 'Departamento';
 		
-		$('#container').highcharts({
+		$('#lineContainer').highcharts({
 			chart : {
 				type : 'column'
 			},
 			title : {
-				text : '<h3>Departamento  '+dpto+'</h3>'
+				text : '<h3>'+descripDpto+' '+dpto+'</h3>'
 			},
 			subtitle:{
 				text: "Listado de infracciones por cuidad de emision de Licencia"
@@ -433,6 +450,20 @@
 				</div>
 				<div class="modal-body text-center">
 					<img alt="loading" src="images/ajax-loader.gif">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="lineChart" class="modal " role="dialog" >
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					 <button type="button" class="close" onclick="$('#lineChart').modal('hide');">&times;</button>
+					<h4 class="modal-title"><i class="fa fa-bar-chart"></i></h4>
+				</div>
+				<div class="modal-body text-center">
+					<div id="lineContainer" style="width: 60%;">
+					</div>
 				</div>
 			</div>
 		</div>

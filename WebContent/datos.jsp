@@ -60,19 +60,11 @@
 		Multa[] multas = list.toArray(new Multa[list.size()]);
 		respon.setData(multas);
 		ObjectMapper mapper = new ObjectMapper();
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		mapper.writeValue(bos, respon);
 		response.setContentType("application/json");
 		out.write(mapper.writeValueAsString(respon));
 	} else {
-		ResponseWrapper respon = new ResponseWrapper();
-		CharWrapper list = multaService.getCharData(dpto);
-		respon.setCategorias(list.getCategorias());
-		respon.setSeries(list.getSeries().toArray(new Distrito[list.getSeries().size()]));
 		ObjectMapper mapper = new ObjectMapper();
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		mapper.writeValue(bos, respon);
 		response.setContentType("application/json");
-		out.write(mapper.writeValueAsString(respon));
+		out.write(mapper.writeValueAsString(multaService.getCharData(dpto)));
 	}
 %>

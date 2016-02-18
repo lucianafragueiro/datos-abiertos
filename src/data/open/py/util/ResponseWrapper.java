@@ -1,5 +1,8 @@
 package data.open.py.util;
 
+import java.util.List;
+import java.util.Set;
+
 import data.open.py.entidad.Distrito;
 import data.open.py.entidad.Multa;
 
@@ -9,23 +12,23 @@ public class ResponseWrapper {
 	Integer recordsFiltered;
 	Integer draw;
 	Multa[] data;
-	String  categorias[];
-	Distrito series [];
+	Set<String> categorias;
+	List<Distrito> series;
 	
 
-	public String[] getCategorias() {
+	public Set<String> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(String[] categorias) {
+	public void setCategorias(Set<String> categorias) {
 		this.categorias = categorias;
 	}
 
-	public Distrito[] getSeries() {
+	public List<Distrito> getSeries() {
 		return series;
 	}
 
-	public void setSeries(Distrito[] series) {
+	public void setSeries(List<Distrito> series) {
 		this.series = series;
 	}
 

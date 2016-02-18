@@ -6,6 +6,10 @@ public class Distrito {
 	private String nombre;
 	private ArrayList<Estado> estado = new ArrayList<>();
 	
+	public Distrito(String nombre){
+		this.nombre = nombre;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
