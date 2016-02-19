@@ -453,7 +453,14 @@
 		 	        "serverSide": true,
 		 	        "ajax": {
 		 	            "url": "datos.jsp",
-		 	            "type": "POST"
+		 	            "type": "POST",
+		 	            "beforeSend":function(e){
+								$("#myModal").modal("show");
+			 	            },
+			 	         "complete":function(e){
+								$("#myModal").modal("hide");
+			 	            }
+ 	            
 		 	        },
 		 	       scrollX:        true,
 		 	        scrollCollapse: true,

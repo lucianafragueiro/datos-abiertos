@@ -35,10 +35,12 @@ public class MultasService {
 				+ " FROM multas_mopc ");
 	}
 
-	public ArrayList<Multa> getListMultas(ParamWrapper params) {
+	public ArrayList<Multa> getListMultas(ParamWrapper params,String ordCol, String ordDir) {
 		Statement statm;
 		ResultSet result;
 		String where = CommonClass.getFilterFromParams(params);
+		Integer ordCols = ordCol.equals("") ? 1 : Integer.parseInt(ordCol) + 1 ;
+		ordDir = ordDir.equals("") ? "desc" : ordDir; 
 		ArrayList<Multa> multas = new ArrayList<>();
 
 		if (!where.equals("")) {
@@ -46,7 +48,7 @@ public class MultasService {
 			buffer.append(where);
 		}
 
-		buffer.append(" order by id_multa desc");
+		buffer.append(" order by "+ordCols+" "+ordDir);
 		buffer.append(" limit " + params.getLimite());
 		buffer.append(" offset " + params.getPagina());
 

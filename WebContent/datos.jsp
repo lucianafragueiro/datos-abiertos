@@ -52,7 +52,7 @@
 %>
 <%
 	if (dpto.equals("")) {
-		ArrayList<Multa> list = multaService.getListMultas(params);
+		ArrayList<Multa> list = multaService.getListMultas(params,orderColum,orderDir);
 		ResponseWrapper respon = new ResponseWrapper();
 		respon.setRecordsTotal(params.getCantida_reg());
 		respon.setRecordsFiltered(params.getCantidad_reg_filter());
