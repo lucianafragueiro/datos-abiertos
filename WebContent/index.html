@@ -25,6 +25,12 @@
 	margin: 0 auto;
 }
 
+#text {
+	margin-top: 0px;
+	margin-bottom: 5px; 
+	margin-left: auto;
+	margin-right: auto;
+}
 .td-title {
 	font-weight: bold;
 }
@@ -56,20 +62,37 @@
 </style>
 <body>
 
-	<div class="container">
-		<h3>Infracciones de Transitos</h3>
+	
+
+<div class="container">
+		<h3>Infracciones de Tr&aacute;nsito</h3>
 		<ul class="nav nav-tabs">
 			<li class="active"><a data-toggle='tab' href="#mapa">Mapa</a></li>
 			<li><a data-toggle='tab' href="#datos">Datos</a></li>
-			<li><a data-toggle='tab' href="#vista" onclick="bubbleChar();">Visualización</a></li>
+			<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Visualizaciones<span class="caret"></span></a>
+			<ul class="dropdown-menu" role="menu" >
+			<li><a data-toggle='tab' href="#vista" onclick="bubbleChar();">Multas Pagadas 2014 - 2015</a></li>
 			<li><a data-toggle='tab' href="#pendientes" onclick="bubbleChar2();">Multas Pagadas - No pagadas</a></li>
-			<li><a data-toggle='tab' href="#totales" onclick="bubbleChar3();">Infracciones 2015</a></li>
+			<li><a data-toggle='tab' href="#totales2014" onclick="bubbleChar4();">Infracciones 2014</a></li>
+			<li><a data-toggle='tab' href="#totales2015" onclick="bubbleChar3();">Infracciones 2015</a></li>
+			</ul>
+			<li><a data-toggle='tab' href="#datos2">Diccionario de Datos</a></li>
+			</li>
 		</ul>
 		<br>
 	</div>
 	<div class="tab-content">
 		<div id="mapa" class="tab-pane fade in active">
-			<div id="map" style="width: 80%; height: 450px;"></div>
+			<div id= "text" class="alert-info" style="width: 80%; height: 95px;">
+				<div class="container" >
+					<h3 style="margin-bottom: 0px;">Importante</h3>
+					<p style="padding-bottom: 5px; margin-top: 0px;">La distribuci&oacute;n del gr&aacute;fico visualizado se realiza en base a la cantidad de infracciones registradas por la Policia Caminera asi como el Departamento y Ciudad <br>
+					de donde los conductores tramitaron sus registros de conducir.</p>
+				</div>
+			</div>
+			<div id="map" style="width: 80%; height: 420px;">
+			</div>
 		</div>
 		<div id="vista" class="tab-pane fade text-center">
 			<div id='container'
@@ -81,8 +104,13 @@
 				style='height: 70%; width: 80%; margin: 0 auto;'>
 			</div>
 		</div>
-		<div id="totales" class="tab-pane fade text-center">
+		<div id="totales2015" class="tab-pane fade text-center">
 			<div id='container3'
+				style='height: 70%; width: 80%; margin: 0 auto;'>
+			</div>
+		</div>
+		<div id="totales2014" class="tab-pane fade text-center">
+			<div id='container4'
 				style='height: 70%; width: 80%; margin: 0 auto;'>
 			</div>
 		</div>
@@ -94,11 +122,11 @@
 						<table id="tbl-multas" class="display  table-condensed" style='font-size: 12px; width:100%;'>
 							<thead>
 								<tr>
-									<th>C&oacute;digo Sanci&oacute;n</th>
+									<th>C&oacute;digo de Sanci&oacute;n</th>
 									<th>Descripci&oacute;n</th>
-									<th>Tipo Veh&iacute;culo</th>
-									<th>Fecha Sanci&oacute;n</th>
-									<th>Hora Sanci&oacute;n</th>
+									<th>Tipo de Veh&iacute;culo</th>
+									<th>Fecha de Sanci&oacute;n</th>
+									<th>Hora de Sanci&oacute;n</th>
 									<th>Monto</th>
 									<th>Estado</th>
 									<th>Fecha de Pago</th>
@@ -110,7 +138,31 @@
 						</table>
 					</div>
 				</div>
+				<div class="col-md-1">
+				</div>
+			</div>
+		</div><div id="datos2" class="tab-pane fade in text-center">
+			<div class="row">
 				<div class="col-md-1"></div>
+				<div class="col-md-10" style="margin: 0 auto;">
+					<div class="table-responsive">
+						<table id="diccionario" class="display  table-condensed" style='font-size: 12px; width:100%;'>
+							<thead>
+								<tr>
+									<th class = "text-center">Propiedad</th>
+									<th class = "text-center">Nombre de la propiedad</th>
+									<th class = "text-center">Label: Espa&ntilde;ol</th>
+									<th class = "text-center">Ejemplo</th>
+									<th class = "text-center">Tipo de datos</th>
+									<th class = "text-center">Cardinalidad (single or multivalue)</th>
+									<th class = "text-center">Descripci&oacute;n: Espa&ntilde;ol</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+				<div class="col-md-1">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -144,6 +196,7 @@
 				}).addTo(map);
 
 			loadTable();
+			loadDictionary();
 
 			var legend = L.control({position: 'bottomright'});
 			legend.onAdd = function (map) {
@@ -222,7 +275,7 @@
 	        
 	        tooltip: {
 	            headerFormat: '<span style="font-size:11px"><b>{series.name}</b></span><br>',
-	            pointFormat: '<span style="color:{point.color}">Infracciones</span>: <b>{point.y}</b><br><span style="color:{point.color}">{point.name}</span>: <b>{point.z}</b>'
+	            pointFormat: '<span style="color:{point.color}">Infracciones</span>: <b>{point.y}</b><br><span style="color:{point.color}">{point.name}</span>: <b>{point.z} Guaraníes</b>'
 	        },
 
 	        title: {
@@ -309,7 +362,7 @@
 	        
 	        tooltip: {
 	            headerFormat: '<span style="font-size:11px"><b>{series.name}</b></span><br>',
-	            pointFormat: '<span style="color:{point.color}">Infracciones</span>: <b>{point.y}</b><br><span style="color:{point.color}">{point.name}</span>: <b>{point.z}</b>'
+	            pointFormat: '<span style="color:{point.color}">Infracciones</span>: <b>{point.y}</b><br><span style="color:{point.color}">{point.name}</span>: <b>{point.z} Guaraníes</b>'
 	        },
 
 	        title: {
@@ -393,7 +446,7 @@
 	        
 	        tooltip: {
 	            headerFormat: '<span style="font-size:11px"><b>{series.name}</b></span><br>',
-	            pointFormat: '<span style="color:{point.color}">Infracciones</span>: <b>{point.y}</b><br><span style="color:{point.color}">{point.name}</span>: <b>{point.z}</b>'
+	            pointFormat: '<span style="color:{point.color}">Infracciones</span>: <b>{point.y}</b><br><span style="color:{point.color}">{point.name}</span>: <b>{point.z} Guaraníes</b>'
 	        },
 
 	        title: {
@@ -443,6 +496,69 @@
 
 	    });
 	};
+
+	function bubbleChar4 () {
+	    $('#container4').highcharts({
+
+	        chart: {
+	            type: 'bubble',
+	            plotBorderWidth: 1,
+	            zoomType: 'xy'
+	        },
+	        
+	        tooltip: {
+	            headerFormat: '<span style="font-size:11px"><b>{series.name}</b></span><br>',
+	            pointFormat: '<span style="color:{point.color}">Infracciones</span>: <b>{point.y}</b><br><span style="color:{point.color}">{point.name}</span>: <b>{point.z} Guaraníes</b>'
+	        },
+
+	        title: {
+	            text: 'Gráfico Total de Infracciones del 2014'
+	        },
+
+ 		xAxis: {
+            categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dic']
+        },
+
+	        yAxis: {
+	            startOnTick: false,
+	            endOnTick: false,
+	            allowDecimals: false,
+	            title: {
+		            text: 'Cantidad de Infracciones'}
+	        },
+
+	        series: [{
+		        name: 'Infracciones 2014',
+				
+	            data: [
+['Enero',7969,2104580828],
+['Febrero',6125,1647243096],
+['Marzo',8188,2357362724],
+['Abril',8260,2396377756],
+['Mayo',9923,2704347152],
+['Junio',8241,2215545000],
+['Julio',8846,2314021480],
+['Agosto',10244,2949697656],
+['Septiembre',10168,2996669884],
+['Octubre',10983,3334915576],
+['Noviembre',8931,2662219428],
+['Diciembre',9217,2741783948]
+
+	            ],
+	            marker: {
+		            
+	                fillColor: {
+	                    radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+	                    stops: [
+	                        [0, 'rgba(255,255,255,0.5)'],
+	                        [1, Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0.5).get('rgba')]
+	                    ]
+	                }
+	            }
+	        }]
+
+	    });
+	};
 	
 	function loadTable(){
 		
@@ -462,7 +578,7 @@
 			 	            }
  	            
 		 	        },
-		 	       scrollX:        true,
+		 	       scrollX:        false,
 		 	        scrollCollapse: true,
 		 	       fixedColumns:   {
 		 	            leftColumns: 1,
@@ -503,9 +619,52 @@
 						"oAria" : {
 							"sSortAscending" : ": Activar para ordenar la columna de manera ascendente",
 							"sSortDescending" : ": Activar para ordenar la columna de manera descendente"
-						}
+						},
+			            "thousands": "."
 					}
 				});
+		}
+
+	function loadDictionary(){
+		$(document).ready(function() {
+		    $('#diccionario').DataTable( {
+		        "bPaginate": false,
+		        "processing": true,
+		        "serverSide": true,
+		        "ajax": {
+		            "url": "./diccionario.json",
+		            "type": "POST"
+		        },
+		        "searching": false,
+		 	    scrollCollapse: true,
+		        "columns": [
+		            { "data": "propiedad" },
+		            { "data": "nombre de la propiedad" },
+		            { "data": "Label: ESPAÑOL" },
+		            { "data": "Ejemplo" },
+		            { "data": "Tipo de datos" },
+		            { "data": "Cardinalidad (single or multivalue)" },
+		            { "data": "Descripcion: Español" }
+		        ],
+				language : {
+					"sProcessing" : "Procesando ...",
+					"sZeroRecords" : "No se encontraron resultados",
+					"sEmptyTable" : "Ningún dato disponible en esta tabla",
+					"sInfo" : "Mostrando registros del _MAX_ al _MAX_ de un total de _MAX_ registros",
+					"sInfoEmpty" : "Mostrando registros del 12 al 12 de un total de 12 registros",
+					"sInfoFiltered" : "(filtrado de un total de _MAX_ registros)",
+					"sInfoPostFix" : "",
+					"sSearch" : "Buscar:",
+					"sUrl" : "",
+					"sInfoThousands" : ",",
+					"sLoadingRecords" : "Cargando...",
+					"oAria" : {
+						"sSortAscending" : ": Activar para ordenar la columna de manera ascendente",
+						"sSortDescending" : ": Activar para ordenar la columna de manera descendente"
+					}
+				}
+		    } );
+		} );
 		}
 
 	function crearGrafico(ev){
@@ -573,7 +732,7 @@
 				text : '<h3>'+descripDpto+' '+dpto+'</h3>'
 			},
 			subtitle:{
-				text: "Listado de infracciones por cuidad de emision de Licencia"
+				text: "Listado de infracciones por ciudad de emisión de Registro de Conducir"
 				},
 			exporting : {
 				enabled : false

@@ -1,0 +1,115 @@
+{
+  "draw": 0,
+  "recordsTotal":12,
+  "recordsFilteres":12,
+  "data": [
+  {
+    "propiedad": "Código Multa",
+    "nombre de la propiedad": "id_multa",
+    "Label: ESPAÑOL": "Código Multa",
+    "Ejemplo": 272,
+    "Tipo de datos": "xs: integer",
+    "Cardinalidad (single or multivalue)": "single",
+    "Descripcion: Español": "Identificador unico del tipo de Multa."
+  },
+  {
+    "propiedad": "Codigo de Sanción",
+    "nombre de la propiedad": "codigo_nivel",
+    "Label: ESPAÑOL": "Código de Sanción",
+    "Ejemplo": "A65.2",
+    "Tipo de datos": "xs: integer",
+    "Cardinalidad (single or multivalue)": "single",
+    "Descripcion: Español": "Describe el Articulo, Decreto, Ley o Resolución que detalla el tipo de infracción"
+  },
+  {
+    "propiedad": "Descripción",
+    "nombre de la propiedad": "descripcion_nivel",
+    "Label: ESPAÑOL": "Descripción",
+    "Ejemplo": "NO LLEVAR LAS LUCES REGLAMENTARIAS ENCENDIDAS",
+    "Tipo de datos": "xs: string",
+    "Cardinalidad (single or multivalue)": "single",
+    "Descripcion: Español": "Corresponde a la descripción del tipo de infracción."
+  },
+  {
+    "propiedad": "Tipo de Vehículo",
+    "nombre de la propiedad": "tipo_vehiculo",
+    "Label: ESPAÑOL": "Tipo de Vehículo",
+    "Ejemplo": "AUTOMOVIL",
+    "Tipo de datos": "xs: string",
+    "Cardinalidad (single or multivalue)": "single",
+    "Descripcion: Español": "Corresponde al Tipo de Vehiculo que cometio la infraccion."
+  },
+  {
+    "propiedad": "Fecha de la Sanción",
+    "nombre de la propiedad": "fecha_sancion",
+    "Label: ESPAÑOL": "Fecha de la Sanción",
+    "Ejemplo": "12/06/2014",
+    "Tipo de datos": "xs: date",
+    "Cardinalidad (single or multivalue)": "single",
+    "Descripcion: Español": "Fecha en la cual  fue realizada la multa."
+  },
+  {
+    "propiedad": "Hora de la Sanción",
+    "nombre de la propiedad": "hora_sancion",
+    "Label: ESPAÑOL": "Hora de la Sanción",
+    "Ejemplo": "8:00",
+    "Tipo de datos": "xs: time",
+    "Cardinalidad (single or multivalue)": "single",
+    "Descripcion: Español": "Hora en la cual fue realizada la multa."
+  },
+  {
+    "propiedad": "Monto",
+    "nombre de la propiedad": "monto",
+    "Label: ESPAÑOL": "Monto",
+    "Ejemplo": 280624,
+    "Tipo de datos": "xs: integer",
+    "Cardinalidad (single or multivalue)": "single",
+    "Descripcion: Español": "Monto total del tipo de Multa."
+  },
+  {
+    "propiedad": "Estado",
+    "nombre de la propiedad": "estado_multa",
+    "Label: ESPAÑOL": "Estado",
+    "Ejemplo": "Pagado",
+    "Tipo de datos": "xs: string",
+    "Cardinalidad (single or multivalue)": "single",
+    "Descripcion: Español": "Describe el estado de la multa, pudiendo ser estos:\n<br>•Pagado\n<br>•Pendiente\n<br>•Prescripto\n<br>•Amonestado\n<br>•Anulado p/ Juzgado."
+  },
+  {
+    "propiedad": "Fecha de Cobro",
+    "nombre de la propiedad": "fecha_cobro",
+    "Label: ESPAÑOL": "Fecha de Cobro",
+    "Ejemplo": "12/06/2014",
+    "Tipo de datos": "xs: date",
+    "Cardinalidad (single or multivalue)": "single",
+    "Descripcion: Español": "Fecha en la cual  fue cobrada la multa."
+  },
+  {
+    "propiedad": "Ciudad del Registro de Conducir",
+    "nombre de la propiedad": "ciudad_registro_conducir",
+    "Label: ESPAÑOL": "Ciudad del Registro de conducir",
+    "Ejemplo": "PRESIDENTE FRANCO",
+    "Tipo de datos": "xs: string",
+    "Cardinalidad (single or multivalue)": "single",
+    "Descripcion: Español": "Corresponde a la Ciudad en la cual fue expido el documento de Registro de Conducir del Chofer que cometio la infracción."
+  },
+  {
+    "propiedad": "Departamento del Registro de conducir",
+    "nombre de la propiedad": "departamento_registro_conducir",
+    "Label: ESPAÑOL": "Departamento del Registro de conducir",
+    "Ejemplo": "ALTO PARANA",
+    "Tipo de datos": "xs: string",
+    "Cardinalidad (single or multivalue)": "single",
+    "Descripcion: Español": "Corresponde al Departamento en el cual fue expido el documento de Registro de Conducir del Chofer que cometio la infracción."
+  },
+  {
+    "propiedad": "Destacamento",
+    "nombre de la propiedad": "destacamento",
+    "Label: ESPAÑOL": "Destacamento",
+    "Ejemplo": "COLONIA RAUL ALCIDES OCAMPOS",
+    "Tipo de datos": "xs: string",
+    "Cardinalidad (single or multivalue)": "single",
+    "Descripcion: Español": "Corresponde al lugar donde se cometio la infracciónd."
+  }
+]
+}
