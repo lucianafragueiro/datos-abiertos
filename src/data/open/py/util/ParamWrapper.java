@@ -2,6 +2,12 @@ package data.open.py.util;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author mbenitez
+ * Clase utilizada para envolver los datos <br> 
+ * recibidos desde el cliente <i>Request</i>
+ */
 public class ParamWrapper {
 	
 	 private  String id_multa;

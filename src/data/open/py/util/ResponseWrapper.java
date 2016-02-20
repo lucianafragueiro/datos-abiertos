@@ -5,7 +5,11 @@ import java.util.Set;
 
 import data.open.py.entidad.Distrito;
 import data.open.py.entidad.Multa;
-
+/**
+ * 
+ * @author mbenitez
+ * Clase utilizada para envolver los datos enviados al cliente <i>Response</i>
+ */
 public class ResponseWrapper {
 
 	Integer recordsTotal;

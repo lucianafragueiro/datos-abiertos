@@ -14,11 +14,15 @@ import data.open.py.connection.Conexion;
 import data.open.py.entidad.Distrito;
 import data.open.py.entidad.Estado;
 import data.open.py.entidad.Multa;
-import data.open.py.util.CharWrapper;
 import data.open.py.util.CommonClass;
 import data.open.py.util.ParamWrapper;
 import data.open.py.util.ResponseWrapper;
 
+/**
+ * 
+ * @author mbenitez
+ * Clase encargada de proveer servicios comunes para la aplicacion <br>
+ */
 public class MultasService {
 	private StringBuffer buffer;
 	private ArrayList<Multa> multas;
@@ -34,7 +38,15 @@ public class MultasService {
 				+ " departamento_registro_conducir, " + " destacamento "
 				+ " FROM multas_mopc ");
 	}
-
+/**
+ * Método que provee una lista de Multas <br> recibe como parametro los 
+ * datos del request y dos String mas para crear un orden y la direccion del orden <br>
+ * de la consulta a crear y proveer la lista en base a los parametros
+ * @param params
+ * @param ordCol
+ * @param ordDir
+ * @return ArrayList<Multa>
+ */
 	public ArrayList<Multa> getListMultas(ParamWrapper params,String ordCol, String ordDir) {
 		Statement statm;
 		ResultSet result;
@@ -83,7 +95,12 @@ public class MultasService {
 
 		return multas;
 	}
-
+/**
+ * Metodo que devuelve un String utilizado para filtrar datos, crea una <br>
+ * cadena con la sentencia <i>where sql</i> 
+ * @param params
+ * @return StringBuffer
+ */
 	public StringBuffer getPaginationQuery(ParamWrapper params) {
 		StringBuffer query = new StringBuffer();
 		query.append("SELECT COUNT(*) FROM multas_mopc ");
@@ -97,7 +114,12 @@ public class MultasService {
 		System.out.println("sql: " + query.toString());
 		return query;
 	}
-
+/**
+ * Método utilizado para proveer datos sobre multas por departamento y distrito <br>
+ * recibe como parametro la descripcion de un departamento
+ * @param dpto
+ * @return
+ */
 	public ResponseWrapper getCharData(String dpto) {
 
 		String query1 = ""
@@ -158,16 +180,6 @@ public class MultasService {
 		rw.setSeries(new ArrayList<Distrito>(distritos.values()));
 
 		return rw;
-	}
-
-	public static void main(String agr[]) {
-
-		MultasService m = new MultasService();
-		// CharWrapper chars = m.getCharData("Cen");
-		// for (String cate : chars.getCategorias()) {
-		// System.out.println(cate);
-		// }
-
 	}
 
 	public static class Registro {

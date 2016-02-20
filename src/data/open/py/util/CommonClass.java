@@ -9,8 +9,20 @@ import java.util.Map;
 
 import data.open.py.connection.Conexion;
 
+/**
+ * 
+ * @author mbenitez
+ * Clase que provee utilidad comun para la aplicacion
+ */
 public class CommonClass {
 
+	/** 
+	 * Metodo que crea un String, para realizar filtros en base a los <br>
+	 * parametros recibidos, dependiendo de que tipo sea las propiedades <br>
+	 * crea una consulta adecuada 
+	 * @param params
+	 * @return String
+	 */
 	public static String getFilterFromParams(ParamWrapper params) {
 		
 		String toRet = "";
@@ -61,7 +73,12 @@ public class CommonClass {
 
 		return toRet;
 	}
-
+/**
+ * Metodo utilizado para crear una paginacion de datos en forma dinamica
+ * @param query
+ * @param limite
+ * @return Map
+ */
 	public static Map<String, Integer> pagination(String query, Integer limite) {
 		Map<String, Integer> paginacion = new HashMap<>();
 		ResultSet result = Conexion.getResultByQuery(query);

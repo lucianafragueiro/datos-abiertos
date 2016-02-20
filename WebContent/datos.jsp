@@ -1,4 +1,3 @@
-<%@page import="data.open.py.util.CharWrapper"%>
 <%@page import="java.io.ByteArrayOutputStream"%>
 <%@page import="data.open.py.util.ResponseWrapper"%>
 <%@page import="java.util.ArrayList"%>
