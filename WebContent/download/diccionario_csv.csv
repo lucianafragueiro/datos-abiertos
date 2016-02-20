@@ -1,0 +1,18 @@
+propiedad,nombre de la propiedad,Label: ESPAÑOL,Ejemplo,Tipo de datos,Cardinalidad (single or multivalue),Descripcion: Español
+Código Multa,id_multa,Código Multa,272,xs: integer,single,Identificador unico del tipo de Multa.
+Codigo de Sanción,codigo_nivel,Código de Sanción,A65.2,xs: integer,single,"Describe el Articulo, Decreto, Ley o Resolución que detalla el tipo de infracción"
+Descripción,descripcion_nivel,Descripción,NO LLEVAR LAS LUCES REGLAMENTARIAS ENCENDIDAS,xs: string,single,Corresponde a la descripción del tipo de infracción.
+Tipo de Vehículo,tipo_vehiculo,Tipo de Vehículo,AUTOMOVIL,xs: integer,single,Corresponde al Tipo de Vehiculo que cometio la infraccion.
+Fecha de la Sanción,fecha_sancion,Fecha de la Sanción,12/06/2014,xs: string,single,Fecha en la cual  fue realizada la multa.
+Hora de la Sanción,hora_sancion,Hora de la Sanción,8:00,xs: integer,single,Hora en la cual fue realizada la multa.
+Monto,monto,Monto,280624,xs: string,single,Monto total del tipo de Multa.
+Estado,estado_multa,Estado,Pagado,xs: string,single,"Describe el estado de la multa, pudiendo ser estos:
+•Pagado
+•Pendiente
+•Prescripto
+•Amonestado
+•Anulado p/ Juzgado."
+Fecha de Cobro,fecha_cobro,Fecha de Cobro,12/06/2014,xs:date,single,Fecha en la cual  fue cobrada la multa.
+Ciudad del Registro de Conducir,ciudad_registro_conducir,Ciudad del Registro de conducir,PRESIDENTE FRANCO,xs: string,single,Corresponde a la Ciudad en la cual fue expido el documento de Registro de Conducir del Chofer que cometio la infracción.
+Departamento del Registro de conducir,departamento_registro_conducir,Departamento del Registro de conducir,ALTO PARANA,xs: string,single,Corresponde al Departamento en el cual fue expido el documento de Registro de Conducir del Chofer que cometio la infracción.
+Destacamento,destacamento,Destacamento,COLONIA RAUL ALCIDES OCAMPOS,xs: string,single,Corresponde al lugar donde se cometio la infraccion.
