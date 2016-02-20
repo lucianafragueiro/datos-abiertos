@@ -45,8 +45,9 @@ public class Conexion {
 		
 		try {
 			Class.forName("org.postgresql.Driver");
-			//String dbUrl = System.getenv("JDBC_DATABASE_URL");
-			con = DriverManager.getConnection(url,user,pass);
+			String dbUrl = System.getenv("JDBC_DATABASE_URL");
+			con = DriverManager.getConnection(dbUrl);
+			//con = DriverManager.getConnection(url,user,pass);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

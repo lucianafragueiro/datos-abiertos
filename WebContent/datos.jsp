@@ -21,8 +21,8 @@
 	String start = request.getParameter("start") != null ? request.getParameter("start") : "0";
 	String length = request.getParameter("length") != null ? request.getParameter("length") : "10";
 	String search = request.getParameter("search[value]") != null ? request.getParameter("search[value]") : "";
-	String orderColum = request.getParameter("order[0][column]") != null ? request.getParameter("order[0][column]") : null;
-	String orderDir = request.getParameter("order[0][dir]") != null ? request.getParameter("order[0][dir]") : null;
+	String orderColum = request.getParameter("order[0][column]") != null ? request.getParameter("order[0][column]") : "";
+	String orderDir = request.getParameter("order[0][dir]") != null ? request.getParameter("order[0][dir]") : "";
 	String dpto = request.getParameter("dpto") != null ? request.getParameter("dpto") : "";
 
 	ParamWrapper params = new ParamWrapper();
