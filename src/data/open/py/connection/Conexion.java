@@ -1,12 +1,9 @@
 package data.open.py.connection;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
@@ -51,25 +48,28 @@ public class Conexion {
 	 * y crea la conexion a la base de datos
 	 */
 	private void createConnection(){
-		String host;
-		String port;
-		String db;
-		String user;
-		String pass;
+//		String host;
+//		String port;
+//		String db;
+//		String user;
+//		String pass;
 		String url;
 		
 		
 		try {
 			
-			properties = ResourceBundle.getBundle("data.open.py.util.configuracion");
-			host = properties.getString("host");
-			port = properties.getString("port");
-			db = properties.getString("db");
-			user = properties.getString("user");
-			pass = properties.getString("passwd");
-			url = "jdbc:postgresql://"+host+":"+port+"/"+db;
+//			properties = ResourceBundle.getBundle("data.open.py.util.configuracion");
+//			host = properties.getString("host");
+//			port = properties.getString("port");
+//			db = properties.getString("db");
+//			user = properties.getString("user");
+//			pass = properties.getString("passwd");
+//			url = "jdbc:postgresql://"+host+":"+port+"/"+db;
+			url = System.getenv("JDBC_DATABASE_URL");
 			Class.forName("org.postgresql.Driver");
-			con = DriverManager.getConnection(url,user,pass);
+			//con = DriverManager.getConnection(url,user,pass);
+			con = DriverManager.getConnection(url);
+
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,5 +94,9 @@ public class Conexion {
 		
 		return result;
 		
+	}
+	
+	public static void main(String agr[]){
+		System.out.println(Conexion.getConnection());
 	}
 }

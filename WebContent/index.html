@@ -2,6 +2,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta property="og:url"                content="https://fast-lake-40299.herokuapp.com/" />
+<meta property="og:type"               content="website" />
+<meta property="og:title"              content="Visualización de datos sobre Infracciones de transito" />
+<meta property="og:description"        content="Gráficos sobre Infracciones registradas por la Policia Caminera 2014 - 2015" />
+<meta property="og:image"              content="https://fast-lake-40299.herokuapp.com/images/53_phixr.jpg" />
 <title>Gr&aacute;fico de Infracciones de Transito</title>
 </head>
 <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.css" />
@@ -90,7 +95,7 @@
 			<div id= "text" class="alert-info" style="width: 80%; height: 95px;">
 				<div class="container" >
 					<h3 style="margin-bottom: 0px;">Importante</h3>
-					<p style="padding-bottom: 5px; margin-top: 0px;">La distribuci&oacute;n del gr&aacute;fico visualizado se realiza en base a la cantidad de infracciones registradas por la Policia Caminera asi como el Departamento y Ciudad <br>
+					<p style="padding-bottom: 5px; margin-top: 0px;">La distribuci&oacute;n del gr&aacute;fico visualizado se realiza en base a la cantidad de infracciones registradas por la Policia Caminera, asi como el Departamento y Ciudad <br>
 					de donde los conductores tramitaron sus registros de conducir.</p>
 				</div>
 			</div>
@@ -181,25 +186,17 @@
 	    var html = "";
 		var listCategorias = [];
 		var listSeries = [];
+		var listSeriesMonto = [];
+		var tamanho = parseInt($(window).width()*0.6);
 	$('document').ready(function(){
-// 		var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-// 		var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 50});		
+	
 		var map = L.map('map').setView([-23.4510191,-58.0437109	], 6);
-		//map.addLayer(osm);
-		    //map.dragging.disable();
-            //map.touchZoom.disable();
-            //map.doubleClickZoom.disable();
-            map.scrollWheelZoom.disable();
-            //map.keyboard.disable();
-		
+            map.scrollWheelZoom.disable();		
 		
 			L.geoJson(statesData,{
 				style:style,
 					onEachFeature: function (feature, layer){
-						//layer.bindPopup(createPopup(feature.properties.name,feature.properties.cantidad));
-						//layer.bindPopup(feature.properties.name, {closeButton: false});
-                		//layer.on('mouseover', function() { layer.openPopup(); });
-                		//layer.on('mouseout', function() { layer.closePopup(); });
+					
 						layer.on({click:crearGrafico});
 						}
 				}).addTo(map);
@@ -224,7 +221,7 @@
 			var info = L.control();
 
 			info.onAdd = function (map) {
-			    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+			    this._div = L.DomUtil.create('div', 'info'); 
 			    this.update();
 			    return this._div;
 			};
@@ -598,7 +595,7 @@
 			 	                  { "data": "tipoVehiculo"},
 			 	                  { "data": "fechaSancion"},
 			 	                  { "data": "horaSancion"},
-			 	                  { "data": "monto"},
+			 	                  { "data": "monto", "type":'numeric'},
 			 	                  { "data": "estadoMulta"},
 			 	                  { "data": "fechaCobro"},
 			 	                  { "data": "ciudadRegistroConducir"},
@@ -676,6 +673,7 @@
 		}
 
 	function crearGrafico(ev){
+		
 			var dpto = ev.target.feature.properties.name;
 			$('#myModal').modal('show');
 			$.ajax({
@@ -705,6 +703,28 @@
 							'data':[]
 						}
 						];
+						listSeriesMonto = [{
+							'name':'Pagado',
+							'data':[]
+						},
+						{
+							'name':'Pendiente',
+							'data':[]
+						},
+						{
+							'name':'Amonestado',
+							'data':[]
+						}
+						,
+						{
+							'name':'Anulado p/ Juzgado',
+							'data':[]
+						},
+						{
+							'name':'Prescripto',
+							'data':[]
+						}
+						];;
 						listCategorias = data.categorias;
 							for(var i=0;i<data.series.length;i++){
 										
@@ -712,8 +732,12 @@
 										for(var s=0;s< 5 ;s++ ){
 											if(listSeries[s].name == data.series[i].estado[k].name){
 												listSeries[s].data[i] = data.series[i].estado[k].data;
+												listSeriesMonto[s].data[i] = data.series[i].estado[k].monto;
 											}else if(listSeries[s].data[i] === undefined ){
 												listSeries[s].data[i] = 0;
+											}
+											if(listSeriesMonto[s].data[i] === undefined){
+												listSeriesMonto[s].data[i] = 0;
 											}
 										}
 									}												
@@ -730,17 +754,29 @@
 		}
 
 	function dibujarHisto(dpto) {
+
 		var descripDpto = dpto == 'Asunción' ? '' : 'Departamento';
+		
+		 $('#graf-reload').html('').append($('<a>').attr({
+				title: 'Gráfico sobre montos',
+				href: '#'
+			}).html("<i class='fa fa-refresh'></i>").on('click',function(){
+				dibujarHistoMonto(dpto);
+			}));
+		if($('#lineContainer').highcharts() !== undefined){
+			$('#lineContainer').attr({"width":tamanho});
+		}
 		
 		$('#lineContainer').highcharts({
 			chart : {
-				type : 'column'
+				type : 'column',
+				width:tamanho
 			},
 			title : {
 				text : '<h3>'+descripDpto+' '+dpto+'</h3>'
 			},
 			subtitle:{
-				text: "Listado de infracciones por ciudad de emisión de Registro de Conducir"
+				text: "Listado de infracciones por ciudad de emisión de Registro de Conducir <b>2014 - 2015</b>"
 				},
 			exporting : {
 				enabled : false
@@ -771,7 +807,68 @@
 		});
 
 	}
+
+function dibujarHistoMonto(dpto) {
+		$('#lineContainer').attr({style:''});
+		tamanho = $('#lineContainer').highcharts().chartWidth;
+		$('#graf-reload').html('').append($('<a>').attr({
+			title: 'Gráfico sobre cantidad',
+			href: '#'
+		}).html("<i class='fa fa-refresh'></i>").on('click',function(){
+			dibujarHisto(dpto);
+			}));
+		var descripDpto = dpto == 'Asunción' ? '' : 'Departamento';
+		
+		$('#lineContainer').highcharts({
+			chart : {
+				type : 'column'
+			},
+			title : {
+				text : '<h3>'+descripDpto+' '+dpto+'</h3>'
+			},
+			subtitle:{
+				text: "Listado de infracciones por ciudad de emisión de Registro de Conducir <b>2014 - 2015</b>"
+				},
+			exporting : {
+				enabled : false
+			},
+			yAxis : {
+				allowDecimals: false,
+				min:0,
+				title : {
+					text : 'Monto de Infracciones'
+				}
+			},
+			xAxis : {
+				categories : listCategorias,
+				title : {
+					text : 'Distritos emisor de Licencias'
+				},
+				type: 'category',
+				 labels: {
+		                rotation: -45,
+		                style: {
+		                    fontSize: '8px',
+		                    fontFamily: 'Verdana, sans-serif'
+		                }
+		            }
+			},
+
+			series : listSeriesMonto,
+			width:tamanho
+		});
+
+	}
+(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
 </script>
+<div id="fb-root"></div>
 	<div id="myModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -791,15 +888,19 @@
 					 <button type="button" class="close" onclick="$('#lineChart').modal('hide');">&times;</button>
 					<h4 class="modal-title"><i class="fa fa-bar-chart"></i></h4>
 				</div>
-				<div class="modal-body text-center">
-					<div id="lineContainer" style="width: 60%;">
+				<div class="modal-body">
+					<div class="text-right" id='graf-reload'>
+						
+					</div>
+					<div id="lineContainer" class="text-center" style="width: 60%;">
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<footer>
-		<div class="container">
+		<div class="container text-left" >
+				<div class="fb-like" data-width="30px;" data-href="https://fast-lake-40299.herokuapp.com/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 		</div>
 	</footer>
 </body>

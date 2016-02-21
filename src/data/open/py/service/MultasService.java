@@ -127,19 +127,18 @@ public class MultasService {
 				+ "			departamento_registro_conducir,"
 				+ " 		ciudad_registro_conducir,"
 				+ "			estado_multa, "
-				+ " 		COUNT(ciudad_registro_conducir) as cantidad "
+				+ " 		COUNT(ciudad_registro_conducir) as cantidad, "
+				+ "			SUM(monto) as monto_estados"
 				+ " FROM multas_mopc "
 				+ " WHERE departamento_registro_conducir not ilike '%DEL SUR%' "
 				+ " and unaccent(departamento_registro_conducir) = upper(unaccent(?)) "
 				+ " GROUP BY departamento_registro_conducir,ciudad_registro_conducir ,estado_multa "
 				+ " order by 1,2 desc";
 		PreparedStatement preSta;
-		// PreparedStatement preSta1;
 		List<Registro> registros = new ArrayList<>();
 		try {
 
 			preSta = Conexion.getConnection().prepareStatement(query1);
-			// preSta1 = Conexion.getConnection().prepareStatement(query);
 			preSta.setString(1, dpto);
 			ResultSet rs = preSta.executeQuery();
 			while (rs.next()) {
@@ -148,6 +147,7 @@ public class MultasService {
 				t.ciudad = rs.getString("ciudad_registro_conducir");
 				t.estado = rs.getString("estado_multa");
 				t.cantidad = rs.getInt("cantidad");
+				t.monto = rs.getLong("monto_estados");
 				registros.add(t);
 			}
 
@@ -174,6 +174,7 @@ public class MultasService {
 			Estado e = new Estado();
 			e.setName(r.estado);
 			e.setData(r.cantidad);
+			e.setMonto(r.monto);
 			actual.getEstado().add(e);
 		}
 		
@@ -187,5 +188,6 @@ public class MultasService {
 		String ciudad;
 		String estado;
 		Integer cantidad;
+		Long monto;
 	}
 }

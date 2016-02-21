@@ -4,6 +4,7 @@ public class Estado {
 	
 	private String name;
 	private Integer data;
+	private Long monto;
 	
 	
 	public String getName() {
@@ -18,6 +19,13 @@ public class Estado {
 	public void setData(Integer data) {
 		this.data = data;
 	}
+	public Long getMonto() {
+		return monto;
+	}
+	public void setMonto(Long monto) {
+		this.monto = monto;
+	}
+	
 	
 	
 	
