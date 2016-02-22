@@ -2,18 +2,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta property="og:url"                content="https://fast-lake-40299.herokuapp.com/" />
-<meta property="og:type"               content="website" />
-<meta property="og:title"              content="Visualización de datos sobre Infracciones de transito" />
-<meta property="og:description"        content="Gráficos sobre Infracciones registradas por la Policia Caminera 2014 - 2015" />
-<meta property="og:image"              content="https://fast-lake-40299.herokuapp.com/images/53_phixr.jpg" />
+<meta property="og:url" content="https://fast-lake-40299.herokuapp.com/" />
+<meta property="og:type" content="website" />
+<meta property="og:title"
+	content="Visualización de datos sobre Infracciones de transito" />
+<meta property="og:description"
+	content="Gráficos sobre Infracciones registradas por la Policia Caminera 2014 - 2015" />
+<meta property="og:image"
+	content="https://fast-lake-40299.herokuapp.com/images/53_phixr.jpg" />
 <title>Gr&aacute;fico de Infracciones de Transito</title>
 </head>
 <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet" href="./lib/leaflet/dist/leaflet.css" />
 <link rel="stylesheet" href="./css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="./css/font-awesome.min.css" />
- 
+
 <!-- <script type="text/javascript" src="./lib/jQuery/dist/jquery.min.js"></script> -->
 <script type="text/javascript" src="./lib/jquery-1.12.0.min.js"></script>
 <script type="text/javascript"
@@ -32,10 +35,11 @@
 
 #text {
 	margin-top: 0px;
-	margin-bottom: 5px; 
+	margin-bottom: 5px;
 	margin-left: auto;
 	margin-right: auto;
 }
+
 .td-title {
 	font-weight: bold;
 }
@@ -67,59 +71,71 @@
 </style>
 <body>
 
-	
 
-<div class="container">
+
+	<div class="container">
 		<h3>Infracciones de Tr&aacute;nsito</h3>
-		<ul class="nav navbar-right">
-			<li><a href="https://github.com/ubuntumb/datos-abiertos"><i class="fa fa-github"></i></a>
-			</li>
-		</ul>
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-11">
+				<div class="fb-share-button nav navbar-right" data-width="15"
+					data-href="https://fast-lake-40299.herokuapp.com/"
+					data-layout="button"></div>
+				<a style="display: inline-block; padding-right: 5px;" href="https://github.com/ubuntumb/datos-abiertos" class="nav navbar-right"><i
+					class="fa fa-github"></i></a>
+			</div>
+		</div>
+
+
 		<ul class="nav nav-tabs">
 			<li class="active"><a data-toggle='tab' href="#mapa">Mapa</a></li>
 			<li><a data-toggle='tab' href="#datos">Datos</a></li>
-			<li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Visualizaciones<span class="caret"></span></a>
-			<ul class="dropdown-menu" role="menu" >
-			<li><a data-toggle='tab' href="#vista" onclick="bubbleChar();">Multas Pagadas 2014 - 2015</a></li>
-			<li><a data-toggle='tab' href="#pendientes" onclick="bubbleChar2();">Multas Pagadas - No pagadas</a></li>
-			<li><a data-toggle='tab' href="#totales2014" onclick="bubbleChar4();">Infracciones 2014</a></li>
-			<li><a data-toggle='tab' href="#totales2015" onclick="bubbleChar3();">Infracciones 2015</a></li>
-			</ul>
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" role="button" aria-expanded="false">Visualizaciones<span
+					class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a data-toggle='tab' href="#vista" onclick="bubbleChar();">Multas
+							Pagadas 2014 - 2015</a></li>
+					<li><a data-toggle='tab' href="#pendientes"
+						onclick="bubbleChar2();">Multas Pagadas - No pagadas</a></li>
+					<li><a data-toggle='tab' href="#totales2014"
+						onclick="bubbleChar4();">Infracciones 2014</a></li>
+					<li><a data-toggle='tab' href="#totales2015"
+						onclick="bubbleChar3();">Infracciones 2015</a></li>
+				</ul>
 			<li><a data-toggle='tab' href="#datos2">Diccionario de Datos</a></li>
 		</ul>
 		<br>
 	</div>
 	<div class="tab-content">
 		<div id="mapa" class="tab-pane fade in active">
-			<div id= "text" class="alert-info" style="width: 80%; height: 95px;">
-				<div class="container" >
+			<div id="text" class="alert-info" style="width: 80%; height: 95px;">
+				<div class="container">
 					<h3 style="margin-bottom: 0px;">Importante</h3>
-					<p style="padding-bottom: 5px; margin-top: 0px;">La distribuci&oacute;n del gr&aacute;fico visualizado se realiza en base a la cantidad de infracciones registradas por la Policia Caminera, asi como el Departamento y Ciudad <br>
-					de donde los conductores tramitaron sus registros de conducir.</p>
+					<p style="padding-bottom: 5px; margin-top: 0px;">
+						La distribuci&oacute;n del gr&aacute;fico visualizado se realiza
+						en base a la cantidad de infracciones registradas por la Policia
+						Caminera, asi como el Departamento y Ciudad <br> de donde los
+						conductores tramitaron sus registros de conducir.
+					</p>
 				</div>
 			</div>
-			<div id="map" style="width: 80%; height: 420px;">
-			</div>
+			<div id="map" style="width: 80%; height: 420px;"></div>
 		</div>
 		<div id="vista" class="tab-pane fade text-center">
-			<div id='container'
-				style='height: 70%; width: 80%; margin: 0 auto;'>
+			<div id='container' style='height: 70%; width: 80%; margin: 0 auto;'>
 			</div>
 		</div>
 		<div id="pendientes" class="tab-pane fade text-center">
-			<div id='container2'
-				style='height: 70%; width: 80%; margin: 0 auto;'>
+			<div id='container2' style='height: 70%; width: 80%; margin: 0 auto;'>
 			</div>
 		</div>
 		<div id="totales2015" class="tab-pane fade text-center">
-			<div id='container3'
-				style='height: 70%; width: 80%; margin: 0 auto;'>
+			<div id='container3' style='height: 70%; width: 80%; margin: 0 auto;'>
 			</div>
 		</div>
 		<div id="totales2014" class="tab-pane fade text-center">
-			<div id='container4'
-				style='height: 70%; width: 80%; margin: 0 auto;'>
+			<div id='container4' style='height: 70%; width: 80%; margin: 0 auto;'>
 			</div>
 		</div>
 		<div id="datos" class="tab-pane fade in text-center">
@@ -127,7 +143,8 @@
 				<div class="col-md-1"></div>
 				<div class="col-md-10">
 					<div class="table-responsive">
-						<table id="tbl-multas" class="display  table-condensed" style='font-size: 12px; width:100%;'>
+						<table id="tbl-multas" class="display  table-condensed"
+							style='font-size: 12px; width: 100%;'>
 							<thead>
 								<tr>
 									<th>C&oacute;digo de Sanci&oacute;n</th>
@@ -146,37 +163,45 @@
 						</table>
 					</div>
 				</div>
-				<div class="col-md-1">
+				<div class="col-md-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<div class="nav navbar-right" id="csv-zip">
+						<a href="download/multas_mopc.zip" download="datos.zip"
+							style="color: green; margin-right: 15%;"> <span> <i
+								class="fa fa-file-excel-o fa-2x"></i>
+						</span>Descarga de datos CSV (.zip)
+						</a>
+					</div>
 				</div>
+				<div class="col-md-1"></div>
 			</div>
-			<div align="left" style="margin-left: 120px;">
-				<a href="download/multas_mopc.zip" download="datos.zip" style="color: green;"> <span>
-						<i class="fa fa-file-excel-o fa-2x"></i>
-				</span>Descarga de datos CSV (.zip)
-				</a>
-			</div>
-		</div><div id="datos2" class="tab-pane fade in text-center">
+		</div>
+		<div id="datos2" class="tab-pane fade in text-center">
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-10" style="margin: 0 auto;">
 					<div class="table-responsive">
-						<table id="diccionario" class="display  table-condensed" style='font-size: 12px; width:100%;'>
+						<table id="diccionario" class="display  table-condensed"
+							style='font-size: 12px; width: 100%;'>
 							<thead>
 								<tr>
-									<th class = "text-center">Propiedad</th>
-									<th class = "text-center">Nombre de la propiedad</th>
-									<th class = "text-center">Label: Espa&ntilde;ol</th>
-									<th class = "text-center">Ejemplo</th>
-									<th class = "text-center">Tipo de datos</th>
-									<th class = "text-center">Cardinalidad (single or multivalue)</th>
-									<th class = "text-center">Descripci&oacute;n: Espa&ntilde;ol</th>
+									<th class="text-center">Propiedad</th>
+									<th class="text-center">Nombre de la propiedad</th>
+									<th class="text-center">Label: Espa&ntilde;ol</th>
+									<th class="text-center">Ejemplo</th>
+									<th class="text-center">Tipo de datos</th>
+									<th class="text-center">Cardinalidad (single or
+										multivalue)</th>
+									<th class="text-center">Descripci&oacute;n: Espa&ntilde;ol</th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 				</div>
-				<div class="col-md-1">
-				</div>
+				<div class="col-md-1"></div>
 			</div>
 		</div>
 	</div>
@@ -188,6 +213,8 @@
 		var listSeries = [];
 		var listSeriesMonto = [];
 		var tamanho = parseInt($(window).width()*0.6);
+		var maxMonto = 0;
+		var maxCantidad =   0;
 	$('document').ready(function(){
 	
 		var map = L.map('map').setView([-23.4510191,-58.0437109	], 6);
@@ -234,6 +261,7 @@
 			
 		}
 	);
+
 
 	function quitaAcentos(str){
 		for (var i=0;i<str.length;i++){
@@ -296,6 +324,7 @@
 	            startOnTick: false,
 	            endOnTick: false,
 	            allowDecimals: false,
+	            tickInterval: 500,
 	            title: {
 		            text: 'Cantidad de Infracciones'}
 	        },
@@ -383,6 +412,7 @@
 	            startOnTick: false,
 	            endOnTick: false,
 	            allowDecimals: false,
+	            tickInterval: 500,
 	            title: {
 		            text: 'Cantidad de Infracciones'}
 	        },
@@ -467,6 +497,7 @@
 	            startOnTick: false,
 	            endOnTick: false,
 	            allowDecimals: false,
+	            tickInterval: 500,
 	            title: {
 		            text: 'Cantidad de Infracciones'}
 	        },
@@ -529,6 +560,7 @@
 	            startOnTick: false,
 	            endOnTick: false,
 	            allowDecimals: false,
+	            tickInterval: 500,
 	            title: {
 		            text: 'Cantidad de Infracciones'}
 	        },
@@ -726,6 +758,8 @@
 						}
 						];;
 						listCategorias = data.categorias;
+						maxMonto = 10;
+						maxCantidad = 10;
 							for(var i=0;i<data.series.length;i++){
 										
 									for(var k=0 ;k<data.series[i].estado.length;k++){
@@ -740,6 +774,8 @@
 												listSeriesMonto[s].data[i] = 0;
 											}
 										}
+										maxMonto = (maxMonto < data.series[i].estado[k].monto ) ? data.series[i].estado[k].monto : maxCantidad;
+										maxCantidad = (maxCantidad < data.series[i].estado[k].data ) ? data.series[i].estado[k].data : maxCantidad;  
 									}												
 							}
 							$("#container").html("");
@@ -766,7 +802,7 @@
 		if($('#lineContainer').highcharts() !== undefined){
 			$('#lineContainer').attr({"width":tamanho});
 		}
-		
+		maxCantidad = parseInt(maxCantidad/12);
 		$('#lineContainer').highcharts({
 			chart : {
 				type : 'column',
@@ -783,6 +819,7 @@
 			},
 			yAxis : {
 				allowDecimals: false,
+				 tickInterval: maxCantidad,
 				min:0,
 				title : {
 					text : 'Cantidad de Infracciones'
@@ -791,7 +828,7 @@
 			xAxis : {
 				categories : listCategorias,
 				title : {
-					text : 'Distritos emisor de Licencias'
+					text : 'Cantidad por Distrito/Ciudad'
 				},
 				type: 'category',
 				 labels: {
@@ -818,7 +855,7 @@ function dibujarHistoMonto(dpto) {
 			dibujarHisto(dpto);
 			}));
 		var descripDpto = dpto == 'Asunción' ? '' : 'Departamento';
-		
+		maxMonto = parseInt(maxMonto/10);
 		$('#lineContainer').highcharts({
 			chart : {
 				type : 'column'
@@ -826,6 +863,10 @@ function dibujarHistoMonto(dpto) {
 			title : {
 				text : '<h3>'+descripDpto+' '+dpto+'</h3>'
 			},
+			 tooltip: {
+		            headerFormat: '<span style="font-size:11px"><b>{series.name}</b></span><br>',
+		            pointFormat: '<span style="color:{point.color}">Monto</span>: <b>{point.y}</b> <b> Guaraníes</b>'
+		        },
 			subtitle:{
 				text: "Listado de infracciones por ciudad de emisión de Registro de Conducir <b>2014 - 2015</b>"
 				},
@@ -834,7 +875,7 @@ function dibujarHistoMonto(dpto) {
 			},
 			yAxis : {
 				allowDecimals: false,
-				min:0,
+				tickInterval: maxMonto,
 				title : {
 					text : 'Monto de Infracciones'
 				}
@@ -842,7 +883,7 @@ function dibujarHistoMonto(dpto) {
 			xAxis : {
 				categories : listCategorias,
 				title : {
-					text : 'Distritos emisor de Licencias'
+					text : 'Monto por Distrito/Ciudad'
 				},
 				type: 'category',
 				 labels: {
@@ -868,7 +909,7 @@ function dibujarHistoMonto(dpto) {
 	}(document, 'script', 'facebook-jssdk'));
 
 </script>
-<div id="fb-root"></div>
+	<div id="fb-root"></div>
 	<div id="myModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -881,17 +922,18 @@ function dibujarHistoMonto(dpto) {
 			</div>
 		</div>
 	</div>
-	<div id="lineChart" class="modal " role="dialog" >
+	<div id="lineChart" class="modal " role="dialog">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					 <button type="button" class="close" onclick="$('#lineChart').modal('hide');">&times;</button>
-					<h4 class="modal-title"><i class="fa fa-bar-chart"></i></h4>
+					<button type="button" class="close"
+						onclick="$('#lineChart').modal('hide');">&times;</button>
+					<h4 class="modal-title">
+						<i class="fa fa-bar-chart"></i>
+					</h4>
 				</div>
 				<div class="modal-body">
-					<div class="text-right" id='graf-reload'>
-						
-					</div>
+					<div class="text-right" id='graf-reload'></div>
 					<div id="lineContainer" class="text-center" style="width: 60%;">
 					</div>
 				</div>
@@ -899,8 +941,13 @@ function dibujarHistoMonto(dpto) {
 		</div>
 	</div>
 	<footer>
-		<div class="container text-left" >
-				<div class="fb-like" data-width="30px;" data-href="https://fast-lake-40299.herokuapp.com/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-12" id="face-container"></div>
+
+			</div>
+
 		</div>
 	</footer>
 </body>
