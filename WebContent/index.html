@@ -11,6 +11,17 @@
 <meta property="og:image"
 	content="https://fast-lake-40299.herokuapp.com/images/53_phixr.jpg" />
 <title>Gr&aacute;fico de Infracciones de Transito</title>
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-74359219-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </head>
 <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet" href="./lib/leaflet/dist/leaflet.css" />
@@ -74,15 +85,23 @@
 
 
 	<div class="container">
-		<h3>Infracciones de Tr&aacute;nsito</h3>
+		<h3>
+			Infracciones de Tr&aacute;nsito
+			<div class="nav navbar-right">
+				<img alt="datos abiertos" src="images/od-logo.png">
+			</div>
+		</h3>
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-11">
 				<div class="fb-share-button nav navbar-right" data-width="15"
 					data-href="https://fast-lake-40299.herokuapp.com/"
-					data-layout="button"></div>
-				<a style="display: inline-block; padding-right: 5px;" href="https://github.com/ubuntumb/datos-abiertos" class="nav navbar-right"><i
-					class="fa fa-github"></i></a>
+					data-layout="button"
+					style="margin-left: 30px; margin-top: 3px"></div>
+					<div>
+				<a style="display: inline-block; padding-right: 5px;" href="https://github.com/ubuntumb/datos-abiertos" class="nav navbar-right" target="_blank"><i
+					class="fa fa-github fa-2x" title="Acceder al Proyecto"></i></a>
+					</div>
 			</div>
 		</div>
 
@@ -105,6 +124,8 @@
 				</ul>
 			<li><a data-toggle='tab' href="#datos2">Diccionario de Datos</a></li>
 			<li><a data-toggle='tab' href="#about">Acerca de</a></li>
+			
+			<li><a data-toggle='tab' href="#licencia">Licencia de Uso de la Informaci&oacute;n P&uacute;blica</a></li>
 		</ul>
 		<br>
 	</div>
@@ -143,35 +164,137 @@
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-10">
-						<div class="nav navbar-right">
-							<img alt="datos abiertos" src="images/od-logo.png">
-						</div>
-						<h3 class="text-info text-center" >Visualización de datos sobre multas de transitos </h3>
-						<div class="text-info" style="font-size: 18px;">
-							Datos abiertos
-						</div>
-						<p class="text-justify">
-Los datos abiertos pueden ser libremente usados, re-usados y re-distribuidos por cualquiera, sujeto solamente, a lo sumo, a requisitos de atribución y redistribución con la misma licencia.
-
-Los datos abiertos Gubernamentales son un medio fundamental para fomentar la transparencia, facilitando a los ciudadanos el acceso a la información de la gestión del Gobierno.
-Los ciudadanos pueden así empoderarse de los procesos de decisión, ayudando al gobierno en la toma de mejores decisiones y colaborando en la propuesta de solución.
-						</p>
-						<p class="text-justify">
-							El presente trabajo fue elabarado en el marco del curso de Verano de <span style="font-weight: bold;">Innovación Social y Transparencia Mediante Datos Abiertos</span>
-						</p>
-						<p class="text-justify">
-							Esta publicación se hace posible gracias a los datos que fueron proveídos por el <span style="font-weight: bold;">Ministerio de Obras Públicas y Comunicación</span>, en base a lo solicitado en el portal de <span style="font-weight: bold;"><a href="http://informacionpublica.paraguay.gov.py/portal">Solicitudes de Información Pública</a></a></span>
-						</p>
-						<div class="text-left"> 
-							<span class="text-info" style="font-size: 16px;">Autores:</span>
-							<ul>
-							<li>Marcos Benítez Guayuan</li>
-							<li>Marcos Peralta</li>
+					<h1 class="text-info text-center">Visualizaci&oacute;n de datos
+						sobre multas de tr&aacute;nsito</h1>
+					<div class="text-info" style="font-size: 25px;"><b>Datos
+						abiertos</b></div>
+					<p class="text-justify">Los datos abiertos pueden ser
+						libremente usados, re-usados y re-distribuidos por cualquiera,
+						sujeto solamente, a lo sumo, a requisitos de atribución y
+						redistribución con la misma licencia. Los datos abiertos
+						Gubernamentales son un medio fundamental para fomentar la
+						transparencia, facilitando a los ciudadanos el acceso a la
+						información de la gestión del Gobierno. Los ciudadanos pueden así
+						empoderarse de los procesos de decisión, ayudando al gobierno en
+						la toma de mejores decisiones y colaborando en la propuesta de
+						solución.</p>
+					<p class="text-justify">
+						El presente trabajo fue elaborado en el marco del curso de Verano
+						de <span style="font-weight: bold;">Innovación Social y
+							Transparencia Mediante Datos Abiertos</span>
+					</p>
+					<p class="text-justify">
+						Esta publicación se hace posible gracias a los datos que fueron
+						proveídos por el <span style="font-weight: bold;">Ministerio
+							de Obras Públicas y Comunicaciones ( MOPC)</span>, en base a lo solicitado en el
+						portal de <span style="font-weight: bold;"><a
+							href="http://informacionpublica.paraguay.gov.py/portal/#!/ciudadano/solicitud/559"
+							target="_blank">Solicitudes de Información Pública</a></span>
+					</p>
+					<div class="text-left">
+						<h2 class="text-info">Autores:</h3>
+						<ul>
+							<li style="font-size: 20px"><a href="mailto:marcosben.333@gmail.com" target="_top">Marcos
+									Benítez Guayuan</a></li>
+							<li style="font-size: 20px"><a href="mailto:mrcperalta.mp@gmail.com" target="_top">Marcos Daniel Peralta
+								N&uacute;&ntilde;ez	</a></li>
 						</ul>
-						</div>
+					</div>
 				</div>
-				 <div class="col-md-1"></div>
+				<div class="col-md-1"></div>
 			</div>
+		</div>
+		<div id="licencia" class="tab-pane fade in text-center">
+
+
+			<div itemscope itemtype="https://creativecommons.org/ns#License"
+				itemid="http://www.presidencia.gov.py/archivos/documentos/DECRETO4064_6b26wnlx.pdf">
+				<h1 style="margin-top: 0px">
+					<a href="http://www.presidencia.gov.py/archivos/documentos/DECRETO4064_6b26wnlx.pdf" target="_blank">Licencia de Uso de la Información
+						Pública - Decreto 4064 - Ley Nro. 5282/2014</a>
+					<meta itemprop="legalcode"
+						content="http://www.presidencia.gov.py/archivos/documentos/DECRETO4064_6b26wnlx.pdf"></meta>
+					<meta itemprop="http://purl.org/dc/elements/1.1/publisher"
+						content="Ministerio de Justicia - Presidencia de la República del Paraguay"></meta>
+					<meta itemprop="jurisdiction" content="República del Paraguay"></meta>
+					<meta itemprop="http://purl.org/dc/elements/1.1/date"
+						content="2015-09-15"></meta>
+				</h1>
+				<hr>
+				<h2>Licencia de Uso de la Información y los Datos Abiertos
+					Públicos propiedad del Estado Paraguayo</h2>
+				<p>
+					<span itemprop="http://purl.org/dc/elements/1.1/description"
+						style="display: inline;">Esta licencia otorga la
+						autorización gratuita, perpetua y no exclusiva de uso y/o
+						transformación de la información y los datos abiertos públicos
+						propiedad del Estado Paraguayo a cualquier personafisica o
+						jurídica que haga uso de los mismos.</span>
+				</p>
+				<p>
+					Para efectos de la presente licencia, se entiende por uso y/o
+					transformación autorizada de la información o los datos públicos,
+					las actividades tales como: <span itemprop="permits"
+						style="display: inline;">copia</span>, <span itemprop="permits"
+						style="display: inline;">extracción</span>,
+					<link itemprop="permits"
+						href="http://creativecommons.org/ns#Reproduction"
+						style="display: inline;">
+					reproducción
+					</link>
+					,
+					<link itemprop="permits"
+						href="http://creativecommons.org/ns#Distribution"
+						style="display: inline;">
+					distribución
+					</link>
+					, <span itemprop="permits" style="display: inline;">comunicación
+						pública</span>,
+					<link itemprop="permits"
+						href="http://creativecommons.org/ns#DerivativeWorks"
+						style="display: inline;">
+					adaptación
+					</link>
+					, <span itemprop="permits" style="display: inline;">transformación</span>
+					y todo aquel uso lícito en cualquier modalidad y bajo cualquier
+					formato, por el plazo máximo permitido por la Ley.
+				</p>
+				<hr>
+				<h2>Condiciones de uso y/o transformación de la información o
+					los datos</h2>
+				<p>La licencia de uso estará vigente siempre que el usuario
+					cumpla con las siguientes condiciones:</p>
+				<ol type="a">
+					<li><link itemprop="requires"
+							href="http://creativecommons.org/ns#Attribution"
+							style="display: inline;">Citar a la fuente pública que
+						proveyó la información o los datos objeto del uso y/o
+						transformación; y que el contenido se rige por la presente
+						licencia.
+						</link></li>
+					<li><span itemprop="requires" style="display: inline;">Citar
+							la fecha de la última actualización de la información o los datos
+							objeto del uso y/o transformación, siempre y cuando esto foera
+							conocido.</li>
+					<li><span itemprop="requires" style="display: inline;">No
+							usar la información pública ni los datos abiertos públicos de
+							forma que sugiera o simule un uso oficial o patrocinado por el
+							Estado Paraguayo.</li>
+				</ol>
+				<hr>
+				<h2>Exclusión de responsabilidad</h2>
+				<p>El uso y/o transformación de la información pública o los
+					datos lo realiza el usuario, bajo su exclusiva responsabilidad y
+					riesgo.</p>
+				<p>En ningún caso la fuente pública proveedora de información o
+					los datos será responsable del uso que el usuario haga de la misma,
+					ni tampoco de ningún daño económico o de cualquier índole que, en
+					forma directa o indirecta, se derive u ocurra a terceros sobre sus
+					bienes, equipos, actividad comercial, datos y aplicaciones, como
+					consecuencia de dicho uso y/o transformación de los datos.</p>
+			</div>
+
+
 		</div>
 		<div id="datos" class="tab-pane fade in text-center">
 			<div class="row">
